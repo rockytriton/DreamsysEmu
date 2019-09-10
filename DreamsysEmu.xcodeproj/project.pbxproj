@@ -32,6 +32,7 @@
 		F4135D692324C9A400331F68 /* EmuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4135D682324C9A400331F68 /* EmuVC.swift */; };
 		F4135D6B2324C9CF00331F68 /* EmuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4135D6A2324C9CF00331F68 /* EmuView.swift */; };
 		F4135D6E2326D57900331F68 /* MapperMMC1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4135D6C2326D57900331F68 /* MapperMMC1.cpp */; };
+		F4135D702327522F00331F68 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4135D6F2327522F00331F68 /* Input.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		F4135D6A2324C9CF00331F68 /* EmuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmuView.swift; sourceTree = "<group>"; };
 		F4135D6C2326D57900331F68 /* MapperMMC1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MapperMMC1.cpp; sourceTree = "<group>"; };
 		F4135D6D2326D57900331F68 /* MapperMMC1.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MapperMMC1.hpp; sourceTree = "<group>"; };
+		F4135D6F2327522F00331F68 /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 				F4135D4723237D1D00331F68 /* SwiftBridge.hpp */,
 				F4135D682324C9A400331F68 /* EmuVC.swift */,
 				F4135D6A2324C9CF00331F68 /* EmuView.swift */,
+				F4135D6F2327522F00331F68 /* Input.swift */,
 			);
 			path = DreamsysEmu;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				F4135D4E232382AE00331F68 /* MapperNRom.cpp in Sources */,
 				F4135D452323752900331F68 /* Log.cpp in Sources */,
 				F4135D1123235E5800331F68 /* AppDelegate.swift in Sources */,
+				F4135D702327522F00331F68 /* Input.swift in Sources */,
 				F4135D4C232380F100331F68 /* Mapper.cpp in Sources */,
 				F4135D692324C9A400331F68 /* EmuVC.swift in Sources */,
 				F4135D3F2323709600331F68 /* InstructionProcessor.cpp in Sources */,
