@@ -1,0 +1,634 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F4135D1123235E5800331F68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4135D1023235E5800331F68 /* AppDelegate.swift */; };
+		F4135D1323235E5800331F68 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4135D1223235E5800331F68 /* ViewController.swift */; };
+		F4135D1523235E5800331F68 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4135D1423235E5800331F68 /* Document.swift */; };
+		F4135D1723235E5A00331F68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4135D1623235E5A00331F68 /* Assets.xcassets */; };
+		F4135D1A23235E5A00331F68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4135D1823235E5A00331F68 /* Main.storyboard */; };
+		F4135D2623235E5B00331F68 /* DreamsysEmuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4135D2523235E5B00331F68 /* DreamsysEmuTests.swift */; };
+		F4135D3423235EB700331F68 /* DreamsysEmulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4135D3223235EB700331F68 /* DreamsysEmulator.cpp */; };
+		F4135D3C23235FE100331F68 /* Cpu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4135D3A23235FE100331F68 /* Cpu.cpp */; };
+		F4135D3F2323709600331F68 /* InstructionProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4135D3D2323709600331F68 /* InstructionProcessor.cpp */; };
+		F4135D422323716D00331F68 /* Cartridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4135D402323716D00331F68 /* Cartridge.cpp */; };
+		F4135D452323752900331F68 /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4135D432323752900331F68 /* Log.cpp */; };
+		F4135D4823237D1D00331F68 /* SwiftBridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4135D4623237D1D00331F68 /* SwiftBridge.cpp */; };
+		F4135D4C232380F100331F68 /* Mapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4135D4A232380F100331F68 /* Mapper.cpp */; };
+		F4135D4E232382AE00331F68 /* MapperNRom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4135D4D232382AE00331F68 /* MapperNRom.cpp */; };
+		F4135D5223241E5600331F68 /* CpuBus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4135D5023241E5600331F68 /* CpuBus.cpp */; };
+		F4135D5523241E9D00331F68 /* OpCode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4135D5323241E9D00331F68 /* OpCode.cpp */; };
+		F4135D5823244DB000331F68 /* MemoryAddressor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4135D5623244DB000331F68 /* MemoryAddressor.cpp */; };
+		F4135D5B2324567300331F68 /* Ppu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4135D592324567300331F68 /* Ppu.cpp */; };
+		F4135D5E2324587C00331F68 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4135D5C2324587C00331F68 /* Timer.cpp */; };
+		F4135D6123246EDC00331F68 /* PpuBus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4135D5F23246EDC00331F68 /* PpuBus.cpp */; };
+		F4135D642324810B00331F68 /* Controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4135D622324810B00331F68 /* Controller.cpp */; };
+		F4135D672324926A00331F68 /* PipelineProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4135D652324926A00331F68 /* PipelineProcessor.cpp */; };
+		F4135D692324C9A400331F68 /* EmuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4135D682324C9A400331F68 /* EmuVC.swift */; };
+		F4135D6B2324C9CF00331F68 /* EmuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4135D6A2324C9CF00331F68 /* EmuView.swift */; };
+		F4135D6E2326D57900331F68 /* MapperMMC1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4135D6C2326D57900331F68 /* MapperMMC1.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F4135D2223235E5B00331F68 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4135D0523235E5800331F68 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F4135D0C23235E5800331F68;
+			remoteInfo = DreamsysEmu;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F4135D0D23235E5800331F68 /* DreamsysEmu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DreamsysEmu.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4135D1023235E5800331F68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F4135D1223235E5800331F68 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F4135D1423235E5800331F68 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		F4135D1623235E5A00331F68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F4135D1923235E5A00331F68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F4135D1B23235E5A00331F68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4135D1C23235E5A00331F68 /* DreamsysEmu.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DreamsysEmu.entitlements; sourceTree = "<group>"; };
+		F4135D2123235E5B00331F68 /* DreamsysEmuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DreamsysEmuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4135D2523235E5B00331F68 /* DreamsysEmuTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamsysEmuTests.swift; sourceTree = "<group>"; };
+		F4135D2723235E5B00331F68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4135D3123235EB700331F68 /* DreamsysEmu-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DreamsysEmu-Bridging-Header.h"; sourceTree = "<group>"; };
+		F4135D3223235EB700331F68 /* DreamsysEmulator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DreamsysEmulator.cpp; sourceTree = "<group>"; };
+		F4135D3323235EB700331F68 /* DreamsysEmulator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DreamsysEmulator.hpp; sourceTree = "<group>"; };
+		F4135D3523235ECC00331F68 /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		F4135D3A23235FE100331F68 /* Cpu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Cpu.cpp; sourceTree = "<group>"; };
+		F4135D3B23235FE100331F68 /* Cpu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Cpu.hpp; sourceTree = "<group>"; };
+		F4135D3D2323709600331F68 /* InstructionProcessor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = InstructionProcessor.cpp; sourceTree = "<group>"; };
+		F4135D3E2323709600331F68 /* InstructionProcessor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InstructionProcessor.hpp; sourceTree = "<group>"; };
+		F4135D402323716D00331F68 /* Cartridge.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Cartridge.cpp; sourceTree = "<group>"; };
+		F4135D412323716D00331F68 /* Cartridge.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Cartridge.hpp; sourceTree = "<group>"; };
+		F4135D432323752900331F68 /* Log.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Log.cpp; sourceTree = "<group>"; };
+		F4135D442323752900331F68 /* Log.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Log.hpp; sourceTree = "<group>"; };
+		F4135D4623237D1D00331F68 /* SwiftBridge.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SwiftBridge.cpp; sourceTree = "<group>"; };
+		F4135D4723237D1D00331F68 /* SwiftBridge.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SwiftBridge.hpp; sourceTree = "<group>"; };
+		F4135D4A232380F100331F68 /* Mapper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mapper.cpp; sourceTree = "<group>"; };
+		F4135D4B232380F100331F68 /* Mapper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mapper.hpp; sourceTree = "<group>"; };
+		F4135D4D232382AE00331F68 /* MapperNRom.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MapperNRom.cpp; sourceTree = "<group>"; };
+		F4135D4F232382CD00331F68 /* MapperNRom.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MapperNRom.hpp; sourceTree = "<group>"; };
+		F4135D5023241E5600331F68 /* CpuBus.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CpuBus.cpp; sourceTree = "<group>"; };
+		F4135D5123241E5600331F68 /* CpuBus.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CpuBus.hpp; sourceTree = "<group>"; };
+		F4135D5323241E9D00331F68 /* OpCode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OpCode.cpp; sourceTree = "<group>"; };
+		F4135D5423241E9D00331F68 /* OpCode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OpCode.hpp; sourceTree = "<group>"; };
+		F4135D5623244DB000331F68 /* MemoryAddressor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryAddressor.cpp; sourceTree = "<group>"; };
+		F4135D5723244DB000331F68 /* MemoryAddressor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MemoryAddressor.hpp; sourceTree = "<group>"; };
+		F4135D592324567300331F68 /* Ppu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Ppu.cpp; sourceTree = "<group>"; };
+		F4135D5A2324567300331F68 /* Ppu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Ppu.hpp; sourceTree = "<group>"; };
+		F4135D5C2324587C00331F68 /* Timer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
+		F4135D5D2324587C00331F68 /* Timer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Timer.hpp; sourceTree = "<group>"; };
+		F4135D5F23246EDC00331F68 /* PpuBus.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PpuBus.cpp; sourceTree = "<group>"; };
+		F4135D6023246EDC00331F68 /* PpuBus.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PpuBus.hpp; sourceTree = "<group>"; };
+		F4135D622324810B00331F68 /* Controller.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Controller.cpp; sourceTree = "<group>"; };
+		F4135D632324810B00331F68 /* Controller.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Controller.hpp; sourceTree = "<group>"; };
+		F4135D652324926A00331F68 /* PipelineProcessor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PipelineProcessor.cpp; sourceTree = "<group>"; };
+		F4135D662324926A00331F68 /* PipelineProcessor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PipelineProcessor.hpp; sourceTree = "<group>"; };
+		F4135D682324C9A400331F68 /* EmuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmuVC.swift; sourceTree = "<group>"; };
+		F4135D6A2324C9CF00331F68 /* EmuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmuView.swift; sourceTree = "<group>"; };
+		F4135D6C2326D57900331F68 /* MapperMMC1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MapperMMC1.cpp; sourceTree = "<group>"; };
+		F4135D6D2326D57900331F68 /* MapperMMC1.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MapperMMC1.hpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F4135D0A23235E5800331F68 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4135D1E23235E5B00331F68 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F4135D0423235E5800331F68 = {
+			isa = PBXGroup;
+			children = (
+				F4135D3023235E8400331F68 /* NesEngine */,
+				F4135D0F23235E5800331F68 /* DreamsysEmu */,
+				F4135D2423235E5B00331F68 /* DreamsysEmuTests */,
+				F4135D0E23235E5800331F68 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F4135D0E23235E5800331F68 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F4135D0D23235E5800331F68 /* DreamsysEmu.app */,
+				F4135D2123235E5B00331F68 /* DreamsysEmuTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F4135D0F23235E5800331F68 /* DreamsysEmu */ = {
+			isa = PBXGroup;
+			children = (
+				F4135D1023235E5800331F68 /* AppDelegate.swift */,
+				F4135D1223235E5800331F68 /* ViewController.swift */,
+				F4135D1423235E5800331F68 /* Document.swift */,
+				F4135D1623235E5A00331F68 /* Assets.xcassets */,
+				F4135D1823235E5A00331F68 /* Main.storyboard */,
+				F4135D1B23235E5A00331F68 /* Info.plist */,
+				F4135D1C23235E5A00331F68 /* DreamsysEmu.entitlements */,
+				F4135D4623237D1D00331F68 /* SwiftBridge.cpp */,
+				F4135D4723237D1D00331F68 /* SwiftBridge.hpp */,
+				F4135D682324C9A400331F68 /* EmuVC.swift */,
+				F4135D6A2324C9CF00331F68 /* EmuView.swift */,
+			);
+			path = DreamsysEmu;
+			sourceTree = "<group>";
+		};
+		F4135D2423235E5B00331F68 /* DreamsysEmuTests */ = {
+			isa = PBXGroup;
+			children = (
+				F4135D2523235E5B00331F68 /* DreamsysEmuTests.swift */,
+				F4135D2723235E5B00331F68 /* Info.plist */,
+			);
+			path = DreamsysEmuTests;
+			sourceTree = "<group>";
+		};
+		F4135D3023235E8400331F68 /* NesEngine */ = {
+			isa = PBXGroup;
+			children = (
+				F4135D49232380DF00331F68 /* mapper */,
+				F4135D3923235F6000331F68 /* common */,
+				F4135D3823235F4B00331F68 /* ppu */,
+				F4135D3723235F4200331F68 /* cpu */,
+				F4135D3623235F3900331F68 /* system */,
+				F4135D3123235EB700331F68 /* DreamsysEmu-Bridging-Header.h */,
+			);
+			path = NesEngine;
+			sourceTree = "<group>";
+		};
+		F4135D3623235F3900331F68 /* system */ = {
+			isa = PBXGroup;
+			children = (
+				F4135D3223235EB700331F68 /* DreamsysEmulator.cpp */,
+				F4135D3323235EB700331F68 /* DreamsysEmulator.hpp */,
+				F4135D5C2324587C00331F68 /* Timer.cpp */,
+				F4135D5D2324587C00331F68 /* Timer.hpp */,
+				F4135D622324810B00331F68 /* Controller.cpp */,
+				F4135D632324810B00331F68 /* Controller.hpp */,
+			);
+			path = system;
+			sourceTree = "<group>";
+		};
+		F4135D3723235F4200331F68 /* cpu */ = {
+			isa = PBXGroup;
+			children = (
+				F4135D3A23235FE100331F68 /* Cpu.cpp */,
+				F4135D3B23235FE100331F68 /* Cpu.hpp */,
+				F4135D3D2323709600331F68 /* InstructionProcessor.cpp */,
+				F4135D3E2323709600331F68 /* InstructionProcessor.hpp */,
+				F4135D5023241E5600331F68 /* CpuBus.cpp */,
+				F4135D5123241E5600331F68 /* CpuBus.hpp */,
+				F4135D5323241E9D00331F68 /* OpCode.cpp */,
+				F4135D5423241E9D00331F68 /* OpCode.hpp */,
+				F4135D5623244DB000331F68 /* MemoryAddressor.cpp */,
+				F4135D5723244DB000331F68 /* MemoryAddressor.hpp */,
+			);
+			path = cpu;
+			sourceTree = "<group>";
+		};
+		F4135D3823235F4B00331F68 /* ppu */ = {
+			isa = PBXGroup;
+			children = (
+				F4135D592324567300331F68 /* Ppu.cpp */,
+				F4135D5A2324567300331F68 /* Ppu.hpp */,
+				F4135D5F23246EDC00331F68 /* PpuBus.cpp */,
+				F4135D6023246EDC00331F68 /* PpuBus.hpp */,
+				F4135D652324926A00331F68 /* PipelineProcessor.cpp */,
+				F4135D662324926A00331F68 /* PipelineProcessor.hpp */,
+			);
+			path = ppu;
+			sourceTree = "<group>";
+		};
+		F4135D3923235F6000331F68 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				F4135D3523235ECC00331F68 /* common.h */,
+				F4135D402323716D00331F68 /* Cartridge.cpp */,
+				F4135D412323716D00331F68 /* Cartridge.hpp */,
+				F4135D432323752900331F68 /* Log.cpp */,
+				F4135D442323752900331F68 /* Log.hpp */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		F4135D49232380DF00331F68 /* mapper */ = {
+			isa = PBXGroup;
+			children = (
+				F4135D4A232380F100331F68 /* Mapper.cpp */,
+				F4135D4B232380F100331F68 /* Mapper.hpp */,
+				F4135D4D232382AE00331F68 /* MapperNRom.cpp */,
+				F4135D4F232382CD00331F68 /* MapperNRom.hpp */,
+				F4135D6C2326D57900331F68 /* MapperMMC1.cpp */,
+				F4135D6D2326D57900331F68 /* MapperMMC1.hpp */,
+			);
+			path = mapper;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F4135D0C23235E5800331F68 /* DreamsysEmu */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4135D2A23235E5B00331F68 /* Build configuration list for PBXNativeTarget "DreamsysEmu" */;
+			buildPhases = (
+				F4135D0923235E5800331F68 /* Sources */,
+				F4135D0A23235E5800331F68 /* Frameworks */,
+				F4135D0B23235E5800331F68 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DreamsysEmu;
+			productName = DreamsysEmu;
+			productReference = F4135D0D23235E5800331F68 /* DreamsysEmu.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F4135D2023235E5B00331F68 /* DreamsysEmuTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4135D2D23235E5B00331F68 /* Build configuration list for PBXNativeTarget "DreamsysEmuTests" */;
+			buildPhases = (
+				F4135D1D23235E5B00331F68 /* Sources */,
+				F4135D1E23235E5B00331F68 /* Frameworks */,
+				F4135D1F23235E5B00331F68 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F4135D2323235E5B00331F68 /* PBXTargetDependency */,
+			);
+			name = DreamsysEmuTests;
+			productName = DreamsysEmuTests;
+			productReference = F4135D2123235E5B00331F68 /* DreamsysEmuTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F4135D0523235E5800331F68 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1030;
+				LastUpgradeCheck = 1030;
+				ORGANIZATIONNAME = "Rocky Pulley";
+				TargetAttributes = {
+					F4135D0C23235E5800331F68 = {
+						CreatedOnToolsVersion = 10.3;
+						LastSwiftMigration = 1030;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
+					};
+					F4135D2023235E5B00331F68 = {
+						CreatedOnToolsVersion = 10.3;
+						TestTargetID = F4135D0C23235E5800331F68;
+					};
+				};
+			};
+			buildConfigurationList = F4135D0823235E5800331F68 /* Build configuration list for PBXProject "DreamsysEmu" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F4135D0423235E5800331F68;
+			productRefGroup = F4135D0E23235E5800331F68 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F4135D0C23235E5800331F68 /* DreamsysEmu */,
+				F4135D2023235E5B00331F68 /* DreamsysEmuTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F4135D0B23235E5800331F68 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4135D1723235E5A00331F68 /* Assets.xcassets in Resources */,
+				F4135D1A23235E5A00331F68 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4135D1F23235E5B00331F68 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F4135D0923235E5800331F68 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4135D1323235E5800331F68 /* ViewController.swift in Sources */,
+				F4135D642324810B00331F68 /* Controller.cpp in Sources */,
+				F4135D5523241E9D00331F68 /* OpCode.cpp in Sources */,
+				F4135D5223241E5600331F68 /* CpuBus.cpp in Sources */,
+				F4135D3C23235FE100331F68 /* Cpu.cpp in Sources */,
+				F4135D6123246EDC00331F68 /* PpuBus.cpp in Sources */,
+				F4135D4E232382AE00331F68 /* MapperNRom.cpp in Sources */,
+				F4135D452323752900331F68 /* Log.cpp in Sources */,
+				F4135D1123235E5800331F68 /* AppDelegate.swift in Sources */,
+				F4135D4C232380F100331F68 /* Mapper.cpp in Sources */,
+				F4135D692324C9A400331F68 /* EmuVC.swift in Sources */,
+				F4135D3F2323709600331F68 /* InstructionProcessor.cpp in Sources */,
+				F4135D5B2324567300331F68 /* Ppu.cpp in Sources */,
+				F4135D4823237D1D00331F68 /* SwiftBridge.cpp in Sources */,
+				F4135D5E2324587C00331F68 /* Timer.cpp in Sources */,
+				F4135D422323716D00331F68 /* Cartridge.cpp in Sources */,
+				F4135D6E2326D57900331F68 /* MapperMMC1.cpp in Sources */,
+				F4135D672324926A00331F68 /* PipelineProcessor.cpp in Sources */,
+				F4135D3423235EB700331F68 /* DreamsysEmulator.cpp in Sources */,
+				F4135D5823244DB000331F68 /* MemoryAddressor.cpp in Sources */,
+				F4135D1523235E5800331F68 /* Document.swift in Sources */,
+				F4135D6B2324C9CF00331F68 /* EmuView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4135D1D23235E5B00331F68 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4135D2623235E5B00331F68 /* DreamsysEmuTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F4135D2323235E5B00331F68 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F4135D0C23235E5800331F68 /* DreamsysEmu */;
+			targetProxy = F4135D2223235E5B00331F68 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F4135D1823235E5A00331F68 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F4135D1923235E5A00331F68 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F4135D2823235E5B00331F68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F4135D2923235E5B00331F68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		F4135D2B23235E5B00331F68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = DreamsysEmu/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dreamsyssoft.DreamsysEmu;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "NesEngine/DreamsysEmu-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		F4135D2C23235E5B00331F68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = DreamsysEmu/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dreamsyssoft.DreamsysEmu;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "NesEngine/DreamsysEmu-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		F4135D2E23235E5B00331F68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = DreamsysEmuTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dreamsyssoft.DreamsysEmuTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DreamsysEmu.app/Contents/MacOS/DreamsysEmu";
+			};
+			name = Debug;
+		};
+		F4135D2F23235E5B00331F68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = DreamsysEmuTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dreamsyssoft.DreamsysEmuTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DreamsysEmu.app/Contents/MacOS/DreamsysEmu";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F4135D0823235E5800331F68 /* Build configuration list for PBXProject "DreamsysEmu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4135D2823235E5B00331F68 /* Debug */,
+				F4135D2923235E5B00331F68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4135D2A23235E5B00331F68 /* Build configuration list for PBXNativeTarget "DreamsysEmu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4135D2B23235E5B00331F68 /* Debug */,
+				F4135D2C23235E5B00331F68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4135D2D23235E5B00331F68 /* Build configuration list for PBXNativeTarget "DreamsysEmuTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4135D2E23235E5B00331F68 /* Debug */,
+				F4135D2F23235E5B00331F68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F4135D0523235E5800331F68 /* Project object */;
+}

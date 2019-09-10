@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "handle_STA(nes::cpu::Cpu*, nes::cpu::OpCode&amp;):InstructionProcessor.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "cpu-&gt;data().regA">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "nes::ppu::PipelineProcessor::preRender():PipelineProcessor.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "nes::cpu::Cpu::clockTick():Cpu.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "data().regA">
+            </PersistentString>
+            <PersistentString
+               value = "data().pc">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "nes::cpu::CpuBus::write(unsigned short, unsigned char):CpuBus.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "nes::ppu::Ppu::setStatusFlag(nes::ppu::StatusFlags, bool):Ppu.hpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "ppuData.regStatus">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "nes::ppu::PipelineProcessor::renderVisibleDots():PipelineProcessor.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "ppu-&gt;getMaskFlag(BGEnabled)">
+            </PersistentString>
+            <PersistentString
+               value = "ppu-&gt;data().regStatus">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "nes::ppu::Ppu::readStatus():Ppu.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "ppuData.regStatus">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

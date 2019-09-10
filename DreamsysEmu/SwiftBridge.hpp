@@ -1,0 +1,44 @@
+//
+//  SwiftBridge.hpp
+//  DreamsysEmu
+//
+//  Created by Rocky Pulley on 9/7/19.
+//  Copyright © 2019 Rocky Pulley. All rights reserved.
+//
+
+#ifndef SwiftBridge_hpp
+#define SwiftBridge_hpp
+
+
+extern const int BUTTON_A ;
+extern const int BUTTON_B ;
+extern const int BUTTON_SE;
+extern const int BUTTON_ST;
+extern const int BUTTON_U ;
+extern const int BUTTON_D ;
+extern const int BUTTON_L ;
+extern const int BUTTON_R ;
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+    
+    int loadCartridge(const char *fileName);
+    
+    void emu_run();
+    
+    int emu_running();
+    
+    unsigned int **emu_image_buffer();
+    
+    unsigned int emu_current_frame();
+    
+    void controller_set(int n, unsigned char b, unsigned char state);
+    
+#ifdef __cplusplus
+}
+#endif
+
+
+
+#endif /* SwiftBridge_hpp */
