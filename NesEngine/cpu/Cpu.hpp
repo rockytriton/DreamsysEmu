@@ -87,9 +87,13 @@ namespace nes::cpu {
             ss += ((cpuData.cycles - 1) & 1);
             cpuData.cycles += ss;
         }
-        void interrupt(InterruptType type);
+        bool interrupt(InterruptType type);
         
         uint64_t getClockCount() { return clockCount; }
+        
+        void clearDI() {
+            createDisableInterrupt = true;
+        }
     private:
         
         void fetchData(OpCode &opCode);
@@ -103,6 +107,7 @@ namespace nes::cpu {
         bool paused;
         bool stepping;
         uint64_t clockCount;
+        bool createDisableInterrupt = false;
         
         InterruptType intSet = NONE;
     };

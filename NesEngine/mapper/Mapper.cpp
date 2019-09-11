@@ -8,13 +8,17 @@
 
 #include "Mapper.hpp"
 #include "Log.hpp"
+#include "Cpu.hpp"
+#include "Ppu.hpp"
 
 #include "MapperNRom.hpp"
 #include "MapperMMC1.hpp"
+#include "MapperMMC3.hpp"
 
 using namespace nes::mapper;
 
 Mapper::Mapper(Cartridge &cart) : cart(cart) {
+    prgRam = new Byte[0x2000];
     
 }
 
@@ -22,6 +26,8 @@ Mapper::~Mapper() {
     if (chrRam) {
         delete [] chrRam;
     }
+    
+    delete [] prgRam;
 }
 
 void Mapper::init() {
@@ -29,6 +35,8 @@ void Mapper::init() {
     int numChrBanks = cart.getHeader().chrSize * (0x2000 / getChrBankSize());
     
     mirrorType = (MirroringType)(cart.getHeader().mainFlags.flags6 & 1);
+    
+    printf("MT: %d\r\n", mirrorType);
     
     for (int i=0; i<numPrgBanks; i++) {
         prgBanks.push_back(cart.getPrgData() + (getPrgBankSize() * i));
@@ -47,6 +55,14 @@ void Mapper::init() {
     
     if (!numChrBanks) {
         chrRam = new Byte[0x2000];
+        
+        for (int i=0; i<0x2000 / 0x400; i++) {
+            chrBanks.push_back(chrRam + (0x400 * i));
+            Byte *p = chrBanks[i];
+            
+            LOG << "CHR RAM Banks: " << i << " at " << hex64 << (uint64_t)p << endl;
+        }
+        
     } else {
         chrRam = nullptr;
     }
@@ -61,6 +77,9 @@ Mapper *MapperFactory::CreateMapper(Cartridge &cart) {
             break;
         case 1:
             mapper = new MapperMMC1(cart);
+            break;
+        case 4:
+            mapper = new MapperMMC3(cart);
             break;
             
         default:

@@ -9,6 +9,7 @@
 #include "Cpu.hpp"
 #include "Log.hpp"
 #include "DreamsysEmulator.hpp"
+#include "MapperMMC3.hpp"
 
 extern nes::system::DreamsysEmulator emulator;
 
@@ -78,7 +79,32 @@ bool Cpu::getStatusFlag(StatusFlag flag) {
     return cpuData.regStatus & flag;
 }
 
-void Cpu::interrupt(InterruptType type) {
+/*
+ #define    _IRQ() {            \
+ PUSH( R.PC>>8 );        \
+ PUSH( R.PC&0xFF );        \
+ CLR_FLAG( B_FLAG );        \
+ PUSH( R.P );            \
+ SET_FLAG( I_FLAG );        \
+ R.PC = RD6502W(IRQ_VECTOR);    \
+ exec_cycles += 7;        \
+ */
+
+bool Cpu::interrupt(InterruptType type) {
+    
+    if (getStatusFlag(DisableInterrupt) && type != NMI) {
+        //LOG << "SKIPPING INT DISABLED" << endl;
+        
+        if (createDisableInterrupt) {
+            createDisableInterrupt = false;
+            setStatusFlag(DisableInterrupt, false);
+        }
+        
+        return false;
+    }
+    
+    //LOG << "Running Interrupt" << endl;
+    //printf("RUNNING INTERRUPT: %d\r\n", type);
     
     if (type == BRK) {
         cpuData.pc++;
@@ -87,6 +113,7 @@ void Cpu::interrupt(InterruptType type) {
     processor().stackPushWord(cpuData.pc);
     
     Byte sr = cpuData.regStatus;
+    
     sr |= Unused;
     
     if (type == BRK) {
@@ -99,15 +126,19 @@ void Cpu::interrupt(InterruptType type) {
     
     cpuData.absoluteAddr = 0xFFFA;
     
-    if (type == BRK) {
+    if (type == BRK || type == IRQ) {
         cpuData.absoluteAddr = 0xFFFE;
     } else if (type == NMI) {
         
     }
     
     cpuData.pc = bus().readWord(cpuData.absoluteAddr);
+    
+    //LOG << "SET PC ADDR: " << hex16 << cpuData.pc << endl;
 
     cpuData.cycles += 7;
+    
+    return true;
 }
 
 void Cpu::fetchData(OpCode &opCode) {
@@ -119,6 +150,8 @@ void Cpu::fetchData(OpCode &opCode) {
         cpuData.fetched = bus().read(cpuData.absoluteAddr);
     }
 }
+
+extern int startLogging;
 
 void Cpu::clockTick() {
     if (cpuData.cycles > 0) {
@@ -138,9 +171,17 @@ void Cpu::clockTick() {
     Byte amc = memoryAddressor.fetch(*this, opCode);
     cpuData.fetched = cpuData.regA;
     
+    if (clockCount == 0x02e654) {
+        //printf("OK HIT IT\r\n");
+    }
+    
+    if (opCode.name == "CLI") {
+        startLogging = 1;
+    }
+    
     fetchData(opCode);
     
-    if (LOG_ENABLED) {
+    if (LOG_ENABLED && startLogging) {
         LOG << hex64 << clockCount << " " << hex16 << prev << " " << opCode.name << " (" << hex8 << opCode.code << ") "
             << hex16 << cpuData.absoluteAddr << " " << hex8 << cpuData.fetched
         << " A: " << hex8 << cpuData.regA << " X: " << hex8 << cpuData.regX << " Y: " << hex8 << cpuData.regY
@@ -152,12 +193,13 @@ void Cpu::clockTick() {
     
     Byte imc = processor().execute(opCode);
     
+    if (intSet != NONE) {
+        if (interrupt(intSet)) {
+            intSet = NONE;
+        }
+    }
+    
     cpuData.cycles += (amc & imc);
     
     cpuData.cycles--;
-    
-    if (intSet != NONE) {
-        interrupt(intSet);
-        intSet = NONE;
-    }
 }

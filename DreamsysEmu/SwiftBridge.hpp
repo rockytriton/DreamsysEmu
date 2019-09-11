@@ -35,6 +35,10 @@ extern "C" {
     
     void controller_set(int n, unsigned char b, unsigned char state);
     
+    int emu_read_audio(float *p);
+    
+    float *emu_read_samples(unsigned short *n);
+    
 #ifdef __cplusplus
 }
 #endif

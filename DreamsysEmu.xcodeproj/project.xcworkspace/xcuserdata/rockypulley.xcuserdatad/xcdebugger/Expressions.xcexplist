@@ -3,10 +3,13 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "handle_STA(nes::cpu::Cpu*, nes::cpu::OpCode&amp;):InstructionProcessor.cpp">
+         contextName = "nes::cpu::CpuBus::write(unsigned short, unsigned char):CpuBus.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "nes::ppu::Ppu::readStatus():Ppu.cpp">
          <PersistentStrings>
             <PersistentString
-               value = "cpu-&gt;data().regA">
+               value = "ppuData.regStatus">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -14,18 +17,15 @@
          contextName = "nes::ppu::PipelineProcessor::preRender():PipelineProcessor.cpp">
       </ContextState>
       <ContextState
-         contextName = "nes::cpu::Cpu::clockTick():Cpu.cpp">
+         contextName = "nes::mapper::MapperMMC3::onSelectChr():MapperMMC3.cpp">
          <PersistentStrings>
             <PersistentString
-               value = "data().regA">
-            </PersistentString>
-            <PersistentString
-               value = "data().pc">
+               value = "chrBankSize">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "nes::cpu::CpuBus::write(unsigned short, unsigned char):CpuBus.cpp">
+         contextName = "nes::mapper::MapperMMC1::writeCHR(unsigned short, unsigned char):MapperMMC1.cpp">
       </ContextState>
       <ContextState
          contextName = "nes::ppu::Ppu::setStatusFlag(nes::ppu::StatusFlags, bool):Ppu.hpp">
@@ -34,6 +34,23 @@
                value = "ppuData.regStatus">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "nes::mapper::MapperMMC3::init():MapperMMC3.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "handle_STA(nes::cpu::Cpu*, nes::cpu::OpCode&amp;):InstructionProcessor.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "cpu-&gt;data().regA">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "nes::mapper::MapperMMC1::calcPrg():MapperMMC1.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "nes::mapper::MapperMMC1::switchCharBanks():MapperMMC1.cpp">
       </ContextState>
       <ContextState
          contextName = "nes::ppu::PipelineProcessor::renderVisibleDots():PipelineProcessor.cpp">
@@ -47,10 +64,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "nes::ppu::Ppu::readStatus():Ppu.cpp">
+         contextName = "nes::system::DreamsysEmulator::run():DreamsysEmulator.cpp">
          <PersistentStrings>
             <PersistentString
-               value = "ppuData.regStatus">
+               value = "cart.getMapper()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "nes::cpu::Cpu::clockTick():Cpu.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "data().regA">
+            </PersistentString>
+            <PersistentString
+               value = "data().pc">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

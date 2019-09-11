@@ -33,6 +33,13 @@
 		F4135D6B2324C9CF00331F68 /* EmuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4135D6A2324C9CF00331F68 /* EmuView.swift */; };
 		F4135D6E2326D57900331F68 /* MapperMMC1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4135D6C2326D57900331F68 /* MapperMMC1.cpp */; };
 		F4135D702327522F00331F68 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4135D6F2327522F00331F68 /* Input.swift */; };
+		F4135D732327549000331F68 /* MapperMMC3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4135D712327549000331F68 /* MapperMMC3.cpp */; };
+		F41C60D82328449D00710EFA /* Apu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F41C60D62328449D00710EFA /* Apu.cpp */; };
+		F41C60DB23284A1C00710EFA /* ApuChannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F41C60D923284A1C00710EFA /* ApuChannel.cpp */; };
+		F41C60DE232878D600710EFA /* ChannelProcessors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F41C60DC232878D600710EFA /* ChannelProcessors.cpp */; };
+		F41C60E323288B6900710EFA /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F41C60E223288B6900710EFA /* AudioKit.framework */; };
+		F41C60E52328909500710EFA /* AudioQueueRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41C60E42328909500710EFA /* AudioQueueRead.swift */; };
+		F41C60E82328AD8200710EFA /* Filters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F41C60E62328AD8200710EFA /* Filters.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +103,18 @@
 		F4135D6C2326D57900331F68 /* MapperMMC1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MapperMMC1.cpp; sourceTree = "<group>"; };
 		F4135D6D2326D57900331F68 /* MapperMMC1.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MapperMMC1.hpp; sourceTree = "<group>"; };
 		F4135D6F2327522F00331F68 /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
+		F4135D712327549000331F68 /* MapperMMC3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MapperMMC3.cpp; sourceTree = "<group>"; };
+		F4135D722327549000331F68 /* MapperMMC3.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MapperMMC3.hpp; sourceTree = "<group>"; };
+		F41C60D62328449D00710EFA /* Apu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Apu.cpp; sourceTree = "<group>"; };
+		F41C60D72328449D00710EFA /* Apu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Apu.hpp; sourceTree = "<group>"; };
+		F41C60D923284A1C00710EFA /* ApuChannel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ApuChannel.cpp; sourceTree = "<group>"; };
+		F41C60DA23284A1C00710EFA /* ApuChannel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ApuChannel.hpp; sourceTree = "<group>"; };
+		F41C60DC232878D600710EFA /* ChannelProcessors.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ChannelProcessors.cpp; sourceTree = "<group>"; };
+		F41C60DD232878D600710EFA /* ChannelProcessors.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ChannelProcessors.hpp; sourceTree = "<group>"; };
+		F41C60E223288B6900710EFA /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKit.framework; sourceTree = "<group>"; };
+		F41C60E42328909500710EFA /* AudioQueueRead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioQueueRead.swift; sourceTree = "<group>"; };
+		F41C60E62328AD8200710EFA /* Filters.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Filters.cpp; sourceTree = "<group>"; };
+		F41C60E72328AD8200710EFA /* Filters.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Filters.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F41C60E323288B6900710EFA /* AudioKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +143,7 @@
 				F4135D0F23235E5800331F68 /* DreamsysEmu */,
 				F4135D2423235E5B00331F68 /* DreamsysEmuTests */,
 				F4135D0E23235E5800331F68 /* Products */,
+				F41C60DF23288B0F00710EFA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,6 +171,7 @@
 				F4135D682324C9A400331F68 /* EmuVC.swift */,
 				F4135D6A2324C9CF00331F68 /* EmuView.swift */,
 				F4135D6F2327522F00331F68 /* Input.swift */,
+				F41C60E42328909500710EFA /* AudioQueueRead.swift */,
 			);
 			path = DreamsysEmu;
 			sourceTree = "<group>";
@@ -166,6 +188,7 @@
 		F4135D3023235E8400331F68 /* NesEngine */ = {
 			isa = PBXGroup;
 			children = (
+				F41C60D52328448F00710EFA /* apu */,
 				F4135D49232380DF00331F68 /* mapper */,
 				F4135D3923235F6000331F68 /* common */,
 				F4135D3823235F4B00331F68 /* ppu */,
@@ -240,8 +263,33 @@
 				F4135D4F232382CD00331F68 /* MapperNRom.hpp */,
 				F4135D6C2326D57900331F68 /* MapperMMC1.cpp */,
 				F4135D6D2326D57900331F68 /* MapperMMC1.hpp */,
+				F4135D712327549000331F68 /* MapperMMC3.cpp */,
+				F4135D722327549000331F68 /* MapperMMC3.hpp */,
 			);
 			path = mapper;
+			sourceTree = "<group>";
+		};
+		F41C60D52328448F00710EFA /* apu */ = {
+			isa = PBXGroup;
+			children = (
+				F41C60D62328449D00710EFA /* Apu.cpp */,
+				F41C60D72328449D00710EFA /* Apu.hpp */,
+				F41C60D923284A1C00710EFA /* ApuChannel.cpp */,
+				F41C60DA23284A1C00710EFA /* ApuChannel.hpp */,
+				F41C60DC232878D600710EFA /* ChannelProcessors.cpp */,
+				F41C60DD232878D600710EFA /* ChannelProcessors.hpp */,
+				F41C60E62328AD8200710EFA /* Filters.cpp */,
+				F41C60E72328AD8200710EFA /* Filters.hpp */,
+			);
+			path = apu;
+			sourceTree = "<group>";
+		};
+		F41C60DF23288B0F00710EFA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F41C60E223288B6900710EFA /* AudioKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -354,15 +402,21 @@
 				F4135D642324810B00331F68 /* Controller.cpp in Sources */,
 				F4135D5523241E9D00331F68 /* OpCode.cpp in Sources */,
 				F4135D5223241E5600331F68 /* CpuBus.cpp in Sources */,
+				F4135D732327549000331F68 /* MapperMMC3.cpp in Sources */,
 				F4135D3C23235FE100331F68 /* Cpu.cpp in Sources */,
 				F4135D6123246EDC00331F68 /* PpuBus.cpp in Sources */,
+				F41C60E82328AD8200710EFA /* Filters.cpp in Sources */,
 				F4135D4E232382AE00331F68 /* MapperNRom.cpp in Sources */,
 				F4135D452323752900331F68 /* Log.cpp in Sources */,
+				F41C60E52328909500710EFA /* AudioQueueRead.swift in Sources */,
 				F4135D1123235E5800331F68 /* AppDelegate.swift in Sources */,
+				F41C60DB23284A1C00710EFA /* ApuChannel.cpp in Sources */,
+				F41C60DE232878D600710EFA /* ChannelProcessors.cpp in Sources */,
 				F4135D702327522F00331F68 /* Input.swift in Sources */,
 				F4135D4C232380F100331F68 /* Mapper.cpp in Sources */,
 				F4135D692324C9A400331F68 /* EmuVC.swift in Sources */,
 				F4135D3F2323709600331F68 /* InstructionProcessor.cpp in Sources */,
+				F41C60D82328449D00710EFA /* Apu.cpp in Sources */,
 				F4135D5B2324567300331F68 /* Ppu.cpp in Sources */,
 				F4135D4823237D1D00331F68 /* SwiftBridge.cpp in Sources */,
 				F4135D5E2324587C00331F68 /* Timer.cpp in Sources */,
@@ -529,6 +583,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = DreamsysEmu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -550,6 +608,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = DreamsysEmu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

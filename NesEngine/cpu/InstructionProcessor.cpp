@@ -14,6 +14,8 @@ using namespace nes::cpu;
 
 #define DEF_F(x) Byte x(Cpu *cpu, OpCode &opCode)
 
+int startLogging = 0;
+
 DEF_F(handle_SEI) {
     cpu->setStatusFlag(DisableInterrupt, true);
     return 0;
@@ -51,7 +53,8 @@ DEF_F(handle_CLD) {
 }
 
 DEF_F(handle_CLI) {
-    cpu->setStatusFlag(DisableInterrupt, 0);
+    //cpu->setStatusFlag(DisableInterrupt, 0);
+    cpu->clearDI();
     return 0;
 }
 

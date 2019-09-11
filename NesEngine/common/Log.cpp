@@ -13,5 +13,9 @@
 using namespace nes;
 
 Log::Log() {
-    
+    /*
+    std::ofstream *f = new std::ofstream();
+    f->open("/work/test.log", std::ios::out);
+    outStream = f;
+     */
 }

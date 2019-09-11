@@ -52,3 +52,15 @@ unsigned int emu_current_frame() {
 void controller_set(int n, Byte b, Byte state) {
     Controller::controller1().set((ControllerButton)b, state);
 }
+
+int emu_read_audio(float *p) {
+    uint16_t n = 0;
+    
+    emulator.readAudioBuffer(&p, &n);
+    
+    return n;
+}
+
+float *emu_read_samples(uint16_t *n) {
+    return emulator.readSamples(n);
+}

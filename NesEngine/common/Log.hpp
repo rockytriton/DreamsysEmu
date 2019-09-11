@@ -30,7 +30,7 @@ namespace nes {
         };
         
         bool enabled() {
-            return false;
+            return true;
         }
         
     private:

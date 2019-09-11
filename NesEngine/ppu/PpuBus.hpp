@@ -29,12 +29,17 @@ namespace nes::ppu {
         void setMapper(Mapper *p) { mapper = p; }
         
         Byte readPalette(Byte addr) { return palette[addr]; }
+        
+        bool getA12Status() { return a12Status; }
+        
+        Mapper *getMapper() { return mapper; }
     private:
         
         Byte *busRam = nullptr;
         Byte *palette = nullptr;
         Address nameTables[4];
         Mapper *mapper;
+        bool a12Status = false;
     };
     
 }

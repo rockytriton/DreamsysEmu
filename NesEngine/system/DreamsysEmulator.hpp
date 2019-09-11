@@ -38,6 +38,9 @@ namespace nes::system {
             running = false;
         }
         
+        void readAudioBuffer(float **p, Word *n);
+        float *readSamples(Word *n);
+        
     private:
         Cartridge cart;
         Cpu cpu;

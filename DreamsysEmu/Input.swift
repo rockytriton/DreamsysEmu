@@ -188,10 +188,8 @@ func InitGamepad() {
         }
         
         while(true) {
-            print("RUNNING LOOP")
             CFRunLoopRun()
             usleep(500000);
-            print("RUN DONE")
         }
     }
 }

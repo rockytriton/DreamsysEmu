@@ -43,6 +43,10 @@ Byte MapperNRom::readPRG(Address addr) {
 }
 
 Byte MapperNRom::readCHR(Address addr) {
+    if (addr >= 0x2000) {
+        return 0;
+    }
+    
     return chrBanks[0][addr];
 }
 

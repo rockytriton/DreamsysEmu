@@ -12,6 +12,7 @@
 #include "common.h"
 #include "Mapper.hpp"
 #include "Ppu.hpp"
+#include "Apu.hpp"
 
 using namespace nes::mapper;
 using namespace nes::ppu;
@@ -54,7 +55,11 @@ namespace nes::cpu {
         
         void setPpu(Ppu *p) {ppu = p;}
         
-        void setCpu(Cpu *p) {cpu = p;}
+        void setCpu(Cpu *p) {cpu = p; apu.setCpu(p);}
+        
+        Mapper *getMapper() {return mapper; }
+        
+        apu::Apu *getApu() { return &apu; }
         
     private:
         Byte prgRam[64 * 1024];
@@ -62,6 +67,7 @@ namespace nes::cpu {
         Mapper *mapper;
         Ppu *ppu;
         Cpu *cpu;
+        apu::Apu apu;
     };
     
 }

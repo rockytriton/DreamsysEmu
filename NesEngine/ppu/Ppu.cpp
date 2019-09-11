@@ -112,6 +112,9 @@ void Ppu::setDataAddress(Address addr) {
         ppuData.tempAddress |= addr;
         ppuData.dataAddress = ppuData.tempAddress;
         ppuData.firstWrite = true;
+        
+        //printf("DATA ADDR SET TO %0.4X\r\n", ppuData.dataAddress);
+        ppuBus.getMapper()->updateA12(((ppuData.dataAddress >> 12) & 1));
     }
 }
 

@@ -21,10 +21,8 @@ MapperMMC1::~MapperMMC1() {
 void MapperMMC1::init() {
     Mapper::init();
     
-    if (cart.getHeader().chrSize) {
-        mmc1ChrBanks[0] = chrBanks[0];
-        mmc1ChrBanks[1] = chrBanks[0];
-    }
+    mmc1ChrBanks[0] = chrBanks[0];
+    mmc1ChrBanks[1] = chrBanks[0];
     
     mmc1PrgBanks[0] = prgBanks[0];
     mmc1PrgBanks[1] = prgBanks[prgBanks.size() - 1];
@@ -43,6 +41,10 @@ Byte MapperMMC1::readPRG(Address addr) {
 }
 
 Byte MapperMMC1::readCHR(Address addr) {
+    if (addr >= 0x2000) {
+        return 0;
+    }
+    
     if (addr < 0x1000) {
         return mmc1ChrBanks[0][addr];
     }
@@ -111,6 +113,20 @@ void MapperMMC1::writePRG(Address addr, Byte value) {
     if (addr < 0x8000) {
         //chr ram
         prgRam[addr - 0x6000] = value;
+        
+        
+        if (value == 0) {
+            for (int i=4; i<500; i++) {
+                if (prgRam[i] == 0) {
+                    break;
+                }
+                
+                printf("%c", prgRam[i]);
+            }
+            
+            printf("\r\n");
+        }
+        
         return;
     }
     
@@ -153,6 +169,10 @@ void MapperMMC1::writePRG(Address addr, Byte value) {
 }
 
 void MapperMMC1::writeCHR(Address addr, Byte value) {
+    if (addr >= 0x2000) {
+        return;
+    }
+    
     if (addr < 0x1000) {
         mmc1ChrBanks[0][addr] = value;
     }

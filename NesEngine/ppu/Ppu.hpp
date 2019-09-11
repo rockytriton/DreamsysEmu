@@ -194,6 +194,10 @@ namespace nes::ppu {
             return pipelineProcessor;
         }
         
+        bool displayEnabled() {
+            return getMaskFlag(BGEnabled) | getMaskFlag(SpriteEnabled);
+        }
+        
     private:
         PpuData ppuData;
         PpuBus ppuBus;

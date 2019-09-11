@@ -21,7 +21,7 @@ Byte CpuBus::read(Address address) {
         return ram[address & 0x7FF];
     } else if ((address >= 0x4000 && address <= 0x4013) || address == 0x4015) {
         //APU stuff
-        return 0;
+        return apu.read(address);
     }
     else if (address == 0x4014) {
         //DMA
@@ -33,6 +33,7 @@ Byte CpuBus::read(Address address) {
     }
     else if (address == JOY2) {
         //JOY2
+
         return nes::system::Controller::controller2().read();
     }
     else if (address < 0x4000 && address < 0x4000 && (address & 0x2007) == PPUSTATUS) {
@@ -59,7 +60,7 @@ void CpuBus::write(Address address, Byte value) {
         ram[address & 0x7FF] = value;
     }
     else if ((address >= 0x4000 && address <= 0x4013) || address == 0x4015 || address == 0x4017) {
-        //APU stuff
+        apu.write(address, value);
     }
     else if (address == OAMDMA) {
         //DMA
@@ -71,8 +72,7 @@ void CpuBus::write(Address address, Byte value) {
         //JOY1
         nes::system::Controller::controller1().write(value);
     } else if (address == JOY2) {
-        //JOY2
-        nes::system::Controller::controller2().write(value);
+        apu.write(address, value);
     } else if (address >= 0x4020) {
         return mapper->writePRG(address, value);
     } else if (address < 0x4000 && (address & 0x2007) == OAMDATA) {

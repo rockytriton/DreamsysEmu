@@ -26,6 +26,9 @@ bool DreamsysEmulator::loadRom(const string &fileName) {
         return false;
     }
     
+    cart.getMapper().setCpu(&cpu);
+    cart.getMapper().setPpu(&ppu);
+    
     paused = false;
     running = true;
     stepping = false;
@@ -66,6 +69,7 @@ void DreamsysEmulator::run() {
             ppu.clockTick();
             ppu.clockTick();
             cpu.clockTick();
+            cpu.bus().getApu()->clockTick();
             
             timer.cycle();
             
@@ -74,6 +78,23 @@ void DreamsysEmulator::run() {
             }
         }
         
-        usleep(1000);
+        //usleep(1);
     }
+}
+
+float *p = new float[4096];
+
+void DreamsysEmulator::readAudioBuffer(float **pp, Word *n) {
+    
+    cpu.bus().getApu()->readAudio(*pp, *n);
+    //memcpy(*pp, p, *n * sizeof(float));
+    /*
+    for (int i=0; i<*n; i++) {
+        float *fp = *pp;
+        fp[i] = p[i];
+    }*/
+}
+
+float *DreamsysEmulator::readSamples(Word *n) {
+    return cpu.bus().getApu()->readSamples(*n);
 }

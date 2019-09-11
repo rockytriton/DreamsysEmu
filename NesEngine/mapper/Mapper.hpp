@@ -18,6 +18,14 @@ using namespace nes::common;
 
 typedef void (*MirroringCallback)(void *);
 
+namespace nes::cpu {
+    class Cpu;
+}
+
+namespace nes::ppu {
+    class Ppu;
+}
+
 namespace nes::mapper {
     enum MirroringType
     {
@@ -48,6 +56,11 @@ namespace nes::mapper {
         
         void setMirroringCallback(MirroringCallback cb, void *p) { mirroringCallback = cb; cbVal = p; }
         
+        void setCpu(nes::cpu::Cpu *p) {cpu = p;}
+        void setPpu(nes::ppu::Ppu *p) {ppu = p;}
+        
+        virtual void updateA12(bool status) {}
+        
     protected:
         Mapper(Cartridge &cart);
         virtual ~Mapper();
@@ -62,7 +75,11 @@ namespace nes::mapper {
         MirroringCallback mirroringCallback;
         void *cbVal;
         
-        Byte *chrRam;
+        Byte *chrRam = nullptr;
+        Byte *prgRam = nullptr;
+        
+        nes::cpu::Cpu *cpu;
+        nes::ppu::Ppu *ppu;
     };
     
     class MapperFactory {

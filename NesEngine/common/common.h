@@ -20,4 +20,6 @@ typedef std::uint16_t Word;
 using std::vector;
 using std::string;
 
+#define BETWEEN(a, b, c) a >= b && a <= c
+
 #endif /* common_h */
