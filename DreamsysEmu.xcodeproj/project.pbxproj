@@ -41,6 +41,11 @@
 		F41C60E82328AD8200710EFA /* Filters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F41C60E62328AD8200710EFA /* Filters.cpp */; };
 		F41C60EB2329B80800710EFA /* PortAudio in Resources */ = {isa = PBXBuildFile; fileRef = F41C60E92329B80800710EFA /* PortAudio */; };
 		F41C60ED2329B94B00710EFA /* libportaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F41C60EC2329B94B00710EFA /* libportaudio.a */; };
+		F41C6179232C3B8600710EFA /* CodeViewWC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41C6175232C3B8500710EFA /* CodeViewWC.xib */; };
+		F41C617A232C3B8600710EFA /* CodeViewWC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41C6176232C3B8600710EFA /* CodeViewWC.swift */; };
+		F41C617B232C3B8600710EFA /* CodeViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41C6177232C3B8600710EFA /* CodeViewVC.xib */; };
+		F41C617C232C3B8600710EFA /* CodeViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41C6178232C3B8600710EFA /* CodeViewVC.swift */; };
+		F41C617E232C432300710EFA /* CodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41C617D232C432300710EFA /* CodeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +124,11 @@
 		F41C60E92329B80800710EFA /* PortAudio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PortAudio; sourceTree = "<group>"; };
 		F41C60EA2329B80800710EFA /* wavefile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wavefile.h; sourceTree = "<group>"; };
 		F41C60EC2329B94B00710EFA /* libportaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libportaudio.a; path = DreamsysEmu/PortAudio/libportaudio.a; sourceTree = "<group>"; };
+		F41C6175232C3B8500710EFA /* CodeViewWC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CodeViewWC.xib; sourceTree = "<group>"; };
+		F41C6176232C3B8600710EFA /* CodeViewWC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeViewWC.swift; sourceTree = "<group>"; };
+		F41C6177232C3B8600710EFA /* CodeViewVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CodeViewVC.xib; sourceTree = "<group>"; };
+		F41C6178232C3B8600710EFA /* CodeViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeViewVC.swift; sourceTree = "<group>"; };
+		F41C617D232C432300710EFA /* CodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +188,11 @@
 				F4135D6A2324C9CF00331F68 /* EmuView.swift */,
 				F4135D6F2327522F00331F68 /* Input.swift */,
 				F41C60E42328909500710EFA /* AudioQueueRead.swift */,
+				F41C6178232C3B8600710EFA /* CodeViewVC.swift */,
+				F41C6177232C3B8600710EFA /* CodeViewVC.xib */,
+				F41C6176232C3B8600710EFA /* CodeViewWC.swift */,
+				F41C6175232C3B8500710EFA /* CodeViewWC.xib */,
+				F41C617D232C432300710EFA /* CodeView.swift */,
 			);
 			path = DreamsysEmu;
 			sourceTree = "<group>";
@@ -389,6 +404,8 @@
 				F41C60EB2329B80800710EFA /* PortAudio in Resources */,
 				F4135D1723235E5A00331F68 /* Assets.xcassets in Resources */,
 				F4135D1A23235E5A00331F68 /* Main.storyboard in Resources */,
+				F41C617B232C3B8600710EFA /* CodeViewVC.xib in Resources */,
+				F41C6179232C3B8600710EFA /* CodeViewWC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +436,7 @@
 				F41C60E52328909500710EFA /* AudioQueueRead.swift in Sources */,
 				F4135D1123235E5800331F68 /* AppDelegate.swift in Sources */,
 				F41C60DB23284A1C00710EFA /* ApuChannel.cpp in Sources */,
+				F41C617C232C3B8600710EFA /* CodeViewVC.swift in Sources */,
 				F41C60DE232878D600710EFA /* ChannelProcessors.cpp in Sources */,
 				F4135D702327522F00331F68 /* Input.swift in Sources */,
 				F4135D4C232380F100331F68 /* Mapper.cpp in Sources */,
@@ -433,8 +451,10 @@
 				F4135D672324926A00331F68 /* PipelineProcessor.cpp in Sources */,
 				F4135D3423235EB700331F68 /* DreamsysEmulator.cpp in Sources */,
 				F4135D5823244DB000331F68 /* MemoryAddressor.cpp in Sources */,
+				F41C617A232C3B8600710EFA /* CodeViewWC.swift in Sources */,
 				F4135D1523235E5800331F68 /* Document.swift in Sources */,
 				F4135D6B2324C9CF00331F68 /* EmuView.swift in Sources */,
+				F41C617E232C432300710EFA /* CodeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

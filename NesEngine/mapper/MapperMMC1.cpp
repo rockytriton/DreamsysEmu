@@ -59,7 +59,7 @@ void MapperMMC1::saveBattery() {
         p = pp + 1;
     }
     
-    sprintf(szFile, "%s%s%s-%d.state", getenv("HOME"), szBankLocation, p, selectedBank);
+    sprintf(szFile, "%s%s%s.save", getenv("HOME"), szBatteryLocation, p);
     
     std::ofstream out(szFile, std::ios::binary);
     out.write((char *) prgRam, 0x2000);
@@ -86,7 +86,7 @@ void MapperMMC1::loadBattery() {
         p = pp + 1;
     }
     
-    sprintf(szFile, "%s%s%s-%d.state", getenv("HOME"), szBankLocation, p, selectedBank);
+    sprintf(szFile, "%s%s%s-%d.save", getenv("HOME"), szBatteryLocation, p);
     
     std::ifstream in(szFile, std::ios::binary);
     

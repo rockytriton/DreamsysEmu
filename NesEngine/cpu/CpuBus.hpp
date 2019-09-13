@@ -61,6 +61,8 @@ namespace nes::cpu {
         
         apu::Apu *getApu() { return &apu; }
         
+        Byte *readRam() { return ram; }
+        
     private:
         Byte prgRam[64 * 1024];
         Byte ram[0x800];

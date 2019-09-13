@@ -179,6 +179,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
 
-
+    @IBAction func onHackRAM(_ sender: Any) {
+        let newVc = CodeViewWC(windowNibName: "CodeViewWC")
+        newVc.contentViewController = CodeViewVC(nibName: "CodeViewVC", bundle: nil)
+        newVc.showWindow(sender)
+    }
+    
 }
 

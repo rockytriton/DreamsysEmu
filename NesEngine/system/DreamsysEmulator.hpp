@@ -46,6 +46,11 @@ namespace nes::system {
             return cpu.bus().read(addr);
         }
         void resetBuffer();
+        
+        Byte *readRam() {
+            return cpu.bus().readRam();
+        }
+        
     private:
         Cartridge cart;
         Cpu cpu;

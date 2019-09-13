@@ -51,6 +51,7 @@ extern "C" {
     
     void updateAudio();
 
+    Byte *emu_read_ram();
     
 #ifdef __cplusplus
 }

@@ -83,6 +83,7 @@ namespace nes::apu {
         virtual Byte read(Byte reg);
         virtual void envelope();
         virtual void tick(bool even);
+        virtual Byte output() { return (silenced || lengthCounter == 0 || (sr & 1) == 1) ? 0 : env.getOutput(); }
         
     private:
         bool mode = false;
@@ -98,7 +99,18 @@ namespace nes::apu {
         virtual void tick(bool even);
         
     private:
+        Address currentAddress = 0;
+        Address sampleAddress = 0;
+        Word sampleLength = 0;
+        Byte sampleBuffer = 0;
         
+        Byte brPeriod = 8;
+        Byte brLoop = false;
+        Byte timerLoop = true;
+        
+        Byte shiftRegister = 0;
+        Byte outputLevel = 0;
+        bool irqEnabled = false;
     };
 }
 

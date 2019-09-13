@@ -119,3 +119,7 @@ float *emu_read_samples(uint16_t *n) {
 void emu_done_read() {
     emulator.resetBuffer();
 }
+
+Byte *emu_read_ram() {
+    return emulator.readRam();
+}
