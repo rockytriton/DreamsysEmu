@@ -12,7 +12,7 @@ import AudioKit;
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    /*
+    
     let sampler = AKSampler()
     var audioQueueRead = AudioQueueRead()
     var buffers:[AudioQueueBufferRef?] = []
@@ -23,7 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     var queue:AudioQueueRef? = nil
     var audioDispatchQueue = DispatchQueue(label: "nesAudioQueue", qos: DispatchQoS.default)
-    */
+    
     @IBAction func onOpenFile(_ sender: Any) {
         let dialog = NSOpenPanel();
         
@@ -82,7 +82,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func prepareBuffer(queue:AudioQueueRef, buffer:AudioQueueBufferRef) {
         
-        /*
+        /*(
         if (nes.getAudioBufferLength() > 0) {
             var len = emu_read_audio(buffer.pointee.mAudioData)
             
@@ -98,9 +98,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //var computeArray: [Float] = Array(repeating: 0, count: 4096)
         //var p = withUnsafeMutablePointer(to: &computeArray) { p in return p }
         
-        /*
+        
         var len : UInt16 = 0;
         var p : UnsafeMutablePointer<Float>? = emu_read_samples(&len);
+        emu_done_read();
         //var len = emu_read_audio(p)
         //print("PREP BUFF: ", len);
         
@@ -114,64 +115,63 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             buffer.pointee.mAudioDataByteSize = bufferLengthInBytes
         }
         //nes.clearAudioBuffer()
-        emu_done_read();
         
         let error:OSStatus = AudioQueueEnqueueBuffer(queue, buffer, 0, nil)
         if (error != 0) {
             print ("Error enqueing audio buffer:\(error)")
         }
- */
+ 
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         InitGamepad();
         
-        emu_init();
+        if USE_PORT_AUDIO == 1 {
+            emu_init();
+        } else {
+            
+            var audioFormat:AudioStreamBasicDescription = AudioStreamBasicDescription()
+            audioFormat.mSampleRate = 44100 //44100
+            audioFormat.mFormatID = kAudioFormatLinearPCM
+            audioFormat.mFormatFlags = kLinearPCMFormatFlagIsFloat | kLinearPCMFormatFlagIsPacked
+            audioFormat.mFramesPerPacket = 1
+            audioFormat.mChannelsPerFrame = 1
+            audioFormat.mBitsPerChannel = frameSizeInBytes * 8
+            audioFormat.mBytesPerFrame = frameSizeInBytes
+            audioFormat.mBytesPerPacket = frameSizeInBytes
+            audioFormat.mReserved = 0
         
-        /*
-        var audioFormat:AudioStreamBasicDescription = AudioStreamBasicDescription()
-        audioFormat.mSampleRate = SAMPLE_RATE //44100
-        audioFormat.mFormatID = kAudioFormatLinearPCM
-        audioFormat.mFormatFlags = kLinearPCMFormatFlagIsFloat | kLinearPCMFormatFlagIsPacked
-        audioFormat.mFramesPerPacket = 1
-        audioFormat.mChannelsPerFrame = 1
-        audioFormat.mBitsPerChannel = frameSizeInBytes * 8
-        audioFormat.mBytesPerFrame = frameSizeInBytes
-        audioFormat.mBytesPerPacket = frameSizeInBytes
-        audioFormat.mReserved = 0
-    
-        
-        
-        var error:OSStatus
-        error = AudioQueueNewOutputWithDispatchQueue(&queue, &audioFormat, 0, audioDispatchQueue, { [unowned self] (queue:AudioQueueRef, buffer:AudioQueueBufferRef) -> Void in
-            self.prepareBuffer(queue: queue, buffer: buffer)
-        })
-        
-        if (error != 0) {
-            print ("Error creating audio queue:\(error)")
-            return
-        }
-        
-        for _ in 0..<5 {
-            var buffer:AudioQueueBufferRef?
-            error = AudioQueueAllocateBuffer(queue!, bufferLengthInBytes, &buffer)
+            
+            
+            var error:OSStatus
+            error = AudioQueueNewOutputWithDispatchQueue(&queue, &audioFormat, 0, audioDispatchQueue, { [unowned self] (queue:AudioQueueRef, buffer:AudioQueueBufferRef) -> Void in
+                self.prepareBuffer(queue: queue, buffer: buffer)
+            })
+            
             if (error != 0) {
-                print ("Error allocating audio buffer:\(error)")
+                print ("Error creating audio queue:\(error)")
                 return
             }
-            self.prepareBuffer(queue: queue!, buffer: buffer!)
+            
+            for _ in 0..<5 {
+                var buffer:AudioQueueBufferRef?
+                error = AudioQueueAllocateBuffer(queue!, bufferLengthInBytes, &buffer)
+                if (error != 0) {
+                    print ("Error allocating audio buffer:\(error)")
+                    return
+                }
+                self.prepareBuffer(queue: queue!, buffer: buffer!)
+            }
+            AudioQueueSetParameter(queue!, kAudioQueueParam_Volume, 1.0);
+            error = AudioQueueStart(queue!, nil)
+            if (error != 0) {
+                print ("Error starting queue:\(error)")
+                return
+            }
+            
+            print("STARTED Q")
         }
-        AudioQueueSetParameter(queue!, kAudioQueueParam_Volume, 1.0);
-        error = AudioQueueStart(queue!, nil)
-        if (error != 0) {
-            print ("Error starting queue:\(error)")
-            return
-        }
-        
-        print("STARTED Q")
-        */
-        
         
     }
 

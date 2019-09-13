@@ -23,6 +23,32 @@ const uint32_t colors[] = {
     0xfffeffff, 0xc0dfffff, 0xd3d2ffff, 0xe8c8ffff, 0xfbc2ffff, 0xfec4eaff, 0xfeccc5ff, 0xf7d8a5ff,
     0xe4e594ff, 0xcfef96ff, 0xbdf4abff, 0xb3f3ccff, 0xb5ebf2ff, 0xb8b8b8ff, 0x000000ff, 0x000000ff,
 };
+//
+//var p = PixelData(a:255, r: UInt8((n & 0xFF000000) >> 24), g: UInt8((n & 0x00FF0000) >> 16), b: UInt8((n & 0x0000FF00) >> 8))
+
+#define MAKE_PIXEL(n) {0xFF, (n & 0xFF000000) >> 24, ((n & 0x00FF0000) >> 16), (n & 0x0000FF00) >> 8,  }
+
+PixelData MAKE_PIXELX(uint32_t n) {
+    PixelData p;
+    p.a = 0xFF;
+    p.r = (n & 0xFF000000) >> 24;
+    p.g = ((n & 0x00FF0000) >> 16);
+    p.b = (n & 0x0000FF00) >> 8;
+
+    
+    return p;
+}
+
+const PixelData pixels[] = {
+    MAKE_PIXEL(0x666666ff), MAKE_PIXEL(0x002a88ff), MAKE_PIXEL(0x1412a7ff), MAKE_PIXEL(0x3b00a4ff), MAKE_PIXEL(0x5c007eff), MAKE_PIXEL(0x6e0040ff), MAKE_PIXEL(0x6c0600ff), MAKE_PIXEL(0x561d00ff),
+    MAKE_PIXEL(0x333500ff), MAKE_PIXEL(0x0b4800ff), MAKE_PIXEL(0x005200ff), MAKE_PIXEL(0x004f08ff), MAKE_PIXEL(0x00404dff), MAKE_PIXEL(0x000000ff), MAKE_PIXEL(0x000000ff), MAKE_PIXEL(0x000000ff),
+    MAKE_PIXEL(0xadadadff), MAKE_PIXEL(0x155fd9ff), MAKE_PIXEL(0x4240ffff), MAKE_PIXEL(0x7527feff), MAKE_PIXEL(0xa01accff), MAKE_PIXEL(0xb71e7bff), MAKE_PIXEL(0xb53120ff), MAKE_PIXEL(0x994e00ff),
+    MAKE_PIXEL(0x6b6d00ff), MAKE_PIXEL(0x388700ff), MAKE_PIXEL(0x0c9300ff), MAKE_PIXEL(0x008f32ff), MAKE_PIXEL(0x007c8dff), MAKE_PIXEL(0x000000ff), MAKE_PIXEL(0x000000ff), MAKE_PIXEL(0x000000ff),
+    MAKE_PIXEL(0xfffeffff), MAKE_PIXEL(0x64b0ffff), MAKE_PIXEL(0x9290ffff), MAKE_PIXEL(0xc676ffff), MAKE_PIXEL(0xf36affff), MAKE_PIXEL(0xfe6eccff), MAKE_PIXEL(0xfe8170ff), MAKE_PIXEL(0xea9e22ff),
+    MAKE_PIXEL(0xbcbe00ff), MAKE_PIXEL(0x88d800ff), MAKE_PIXEL(0x5ce430ff), MAKE_PIXEL(0x45e082ff), MAKE_PIXEL(0x48cddeff), MAKE_PIXEL(0x4f4f4fff), MAKE_PIXEL(0x000000ff), MAKE_PIXEL(0x000000ff),
+    MAKE_PIXEL(0xfffeffff), MAKE_PIXEL(0xc0dfffff), MAKE_PIXEL(0xd3d2ffff), MAKE_PIXEL(0xe8c8ffff), MAKE_PIXEL(0xfbc2ffff), MAKE_PIXEL(0xfec4eaff), MAKE_PIXEL(0xfeccc5ff), MAKE_PIXEL(0xf7d8a5ff),
+    MAKE_PIXEL(0xe4e594ff), MAKE_PIXEL(0xcfef96ff), MAKE_PIXEL(0xbdf4abff), MAKE_PIXEL(0xb3f3ccff), MAKE_PIXEL(0xb5ebf2ff), MAKE_PIXEL(0xb8b8b8ff), MAKE_PIXEL(0x000000ff), MAKE_PIXEL(0x000000ff),
+};
 
 void PipelineProcessor::preRender() {
     PpuData &ppuData = ppu->data();
@@ -161,6 +187,8 @@ void PipelineProcessor::renderVisibleDots() {
     Byte color = ppu->bus().readPalette(paletteAddr);
     
     ppuData.pictureBuffer[x][y] = colors[color];
+    ppuData.pixelBuffer[x][y] = pixels[color];
+    
 }
 
 void PipelineProcessor::render() {

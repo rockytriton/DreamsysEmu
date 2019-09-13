@@ -30,7 +30,7 @@ void MapperMMC1::init() {
     Mapper::init();
     
     mmc1ChrBanks[0] = chrBanks[0];
-    mmc1ChrBanks[1] = chrBanks[0];
+    mmc1ChrBanks[1] = chrBanks[1];
     
     mmc1PrgBanks[0] = prgBanks[0];
     mmc1PrgBanks[1] = prgBanks[prgBanks.size() - 1];
@@ -117,13 +117,17 @@ Byte MapperMMC1::readPRG(Address addr) {
     }
     
     if (addr < 0xC000) {
-        return mmc1PrgBanks[0][addr - 0x8000];
+        return mmc1PrgBanks[0][addr & 0x3FFF];
     }
     
-    return mmc1PrgBanks[1][addr - 0xC000];
+    return mmc1PrgBanks[1][addr & 0x3FFF];
 }
 
 Byte MapperMMC1::readCHR(Address addr) {
+    if (chrRam != nullptr) {
+        return chrRam[addr];
+    }
+    
     if (addr >= 0x2000) {
         return 0;
     }
@@ -248,6 +252,10 @@ void MapperMMC1::writePRG(Address addr, Byte value) {
 }
 
 void MapperMMC1::writeCHR(Address addr, Byte value) {
+    if (chrRam != nullptr) {
+        chrRam[addr] = value;
+        return;
+    }
     if (addr >= 0x2000) {
         return;
     }

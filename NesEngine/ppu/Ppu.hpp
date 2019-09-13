@@ -80,6 +80,7 @@ namespace nes::ppu {
         
         uint32_t **pictureBuffer;
         uint32_t curFrame;
+        PixelData **pixelBuffer;
     };
     
     class Ppu {

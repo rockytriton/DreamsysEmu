@@ -40,6 +40,13 @@ void Ppu::reset() {
         memset(ppuData.pictureBuffer[i], 0, sizeof(uint32_t) * VisibleScanlines);
     }
     
+    ppuData.pixelBuffer = new PixelData *[ScanlineVisibleDots];
+    
+    for (int i=0; i<ScanlineVisibleDots; i++) {
+        ppuData.pixelBuffer[i] = new PixelData[VisibleScanlines];
+        memset(ppuData.pixelBuffer[i], 0, sizeof(PixelData) * VisibleScanlines);
+    }
+    
     ppuBus.reset();
     
     ppuData.spriteDataAddress = 0;

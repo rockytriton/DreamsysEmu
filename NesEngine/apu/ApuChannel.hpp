@@ -20,6 +20,7 @@ namespace nes::apu {
         virtual void write(Byte reg, Byte value);
         virtual Byte read(Byte reg) = 0;
         virtual void silence();
+        virtual void wake() { silenced = false; }
         virtual Byte counter() { return lengthCounter; }
         virtual void sweep();
         virtual void tick(bool even) = 0;

@@ -12,12 +12,14 @@ class EmuView: NSView {
 
     @IBOutlet weak var imgView: NSImageView!
     
+    /*
     public struct PixelData {
         var a:UInt8 = 255
         var r:UInt8
         var g:UInt8
         var b:UInt8
     }
+    */
     
     public static var drawing = false
     
@@ -76,14 +78,23 @@ class EmuView: NSView {
             return;
         }
         
-        if (lastFrame != -1) {
-        //return;
-        }
-        
         //updateAudio();
         
         lastFrame = emu_current_frame();
         
+        var pb = emu_buffer();
+        
+        for yyy in 0..<240 {
+            var ypos = (yyy * 256);
+            
+            for xxx in 0..<256 {
+                var bt = pb![xxx]
+                var n = (bt![yyy]);
+                pixelData[ypos + xxx] = n;
+            }
+        }
+        
+        /*
         var pb = emu_image_buffer();
         
         for yyy in 0..<240 {
@@ -98,6 +109,11 @@ class EmuView: NSView {
                 var p = PixelData(a:255, r: UInt8((n & 0xFF000000) >> 24), g: UInt8((n & 0x00FF0000) >> 16), b: UInt8((n & 0x0000FF00) >> 8))
                 pixelData[ypos + xxx] = p;
             }
+        }
+ */
+        
+        if (lastFrame != -1) {
+         //   return;
         }
         
         let image = imageFromARGB32Bitmap(pixels: pixelData, width: 256, height: 240)

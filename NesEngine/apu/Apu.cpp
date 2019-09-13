@@ -21,19 +21,25 @@ std::condition_variable cv2; // condition variable for critical section
 
 using namespace nes::apu;
 Apu::Apu() {
-    channels.push_back(new PulseChannel(1));
-    channels.push_back(new PulseChannel(2));
-    channels.push_back(new TriangleChannel());
-    channels.push_back(new NoiseChannel());
+    channelsV.push_back(new PulseChannel(1));
+    channelsV.push_back(new PulseChannel(2));
+    channelsV.push_back(new TriangleChannel());
+    channelsV.push_back(new NoiseChannel());
     //channels.push_back(new DmcChannel());
     
     filters.push_back(new HiPassFilter(90, SAMPLE_RATE));
     filters.push_back(new HiPassFilter(440, SAMPLE_RATE));
     filters.push_back(new LoPassFilter(14000, SAMPLE_RATE));
+    
+    numChannels = (int)channelsV.size();
+    
+    for (int i=0; i<numChannels; i++) {
+        channels[i] = channelsV[i];
+    }
 }
 
 Apu::~Apu() {
-    for (int i=0; i<channels.size(); i++) {
+    for (int i=0; i<numChannels; i++) {
         delete channels[i];
     }
     
@@ -43,7 +49,7 @@ Apu::~Apu() {
 }
 
 void Apu::reset() {
-    for (int i=0; i<channels.size(); i++) {
+    for (int i=0; i<numChannels; i++) {
         channels[i]->silence();
     }
 }
@@ -53,7 +59,7 @@ Byte Apu::read(Address address) {
         //status register.
         Byte shift = 0;
         Byte value = 0;
-        for (int i=0; i<channels.size() - 1; i++) {
+        for (int i=0; i<numChannels - 1; i++) {
             value |= (channels[i]->counter() > 0 ? (1 << shift) : 0);
             shift++;
         }
@@ -68,7 +74,7 @@ Byte Apu::read(Address address) {
         //pulse channels
         Byte channel = address & 0x1C;
         Byte reg = address & 0x3;
-        if (channel < channels.size())
+        if (channel < numChannels)
             return channels[channel]->read(reg);
     }
     
@@ -80,15 +86,21 @@ void Apu::write(Address address, Byte value) {
     if (address == 0x4015) {
         //status register.
         Byte shift = 0;
-        for (int i=0; i<channels.size() - 1; i++) {
+        for (int i=0; i<numChannels - 1; i++) {
             if ((value & (1 << shift)) == 0) {
                 channels[i]->silence();
+            } else {
+                channels[i]->wake();
             }
             value |= (channels[i]->counter() > 0 ? (1 << shift) : 0);
             shift++;
         }
         
         value &= ~DmcInterrupt;
+        
+        if (value != 0) {
+            value = value;
+        }
         
         regStatus = value;
         
@@ -97,7 +109,7 @@ void Apu::write(Address address, Byte value) {
         Byte channel = (address & 0x1C) >> 2;
         Byte reg = address & 0x3;
         
-        if (channel < channels.size())
+        if (channel < numChannels)
             channels[channel]->write(reg, value);
     } else if (address == 0x4017) {
         handleFrameCounter(value);
@@ -114,22 +126,22 @@ void Apu::clockTick() {
     cycles++;
     
     
-    for (int i=0; i<channels.size(); i++) {
-        channels[i]->tick(cycles % 2 == 0);
+    for (int i=0; i<numChannels; i++) {
+        channels[i]->tick((cycles % 2) == 0);
     }
 
     if (cycles % (clockRate / 240) == 0) {
         if (regFrameCounter & Mode1) {
             
             if (frameCount == 0 || frameCount == 2) {
-                for (int i=0; i<channels.size(); i++) {
+                for (int i=0; i<numChannels; i++) {
                     channels[i]->sweep();
                 }
             }
             
             if (frameCount != 4) {
                 
-                for (int i=0; i<channels.size(); i++) {
+                for (int i=0; i<numChannels; i++) {
                     channels[i]->envelope();
                 }
             }
@@ -139,7 +151,7 @@ void Apu::clockTick() {
             }
             
         } else {
-            for (int i=0; i<channels.size(); i++) {
+            for (int i=0; i<numChannels; i++) {
                 channels[i]->envelope();
             }
             
@@ -148,7 +160,7 @@ void Apu::clockTick() {
             }
             
             if (frameCount == 1 || frameCount == 3) {
-                for (int i=0; i<channels.size(); i++) {
+                for (int i=0; i<numChannels; i++) {
                     channels[i]->sweep();
                 }
             }
@@ -282,7 +294,3 @@ float Mixer::sample(Byte pulse1, Byte pulse2, Byte triangle, Byte noise, Byte dm
 
 
 extern "C" void emu_done_read();
-
-void emu_done_read() {
-    //cv.notify_all();
-}

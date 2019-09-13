@@ -91,6 +91,11 @@ uint32_t **emu_image_buffer() {
     return emulator.getPpuData()->pictureBuffer;
 }
 
+extern "C" PixelData **emu_buffer() {
+    return emulator.getPpuData()->pixelBuffer;
+}
+
+
 unsigned int emu_current_frame() {
     return emulator.getPpuData()->curFrame;
 }
@@ -109,4 +114,8 @@ int emu_read_audio(float *p) {
 
 float *emu_read_samples(uint16_t *n) {
     return emulator.readSamples(n);
+}
+
+void emu_done_read() {
+    emulator.resetBuffer();
 }

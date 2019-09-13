@@ -63,7 +63,7 @@ namespace nes::apu {
         void resetBuffer();
         
     protected:
-        vector<ApuChannel *> channels;
+        vector<ApuChannel *> channelsV;
         Byte regStatus;
         Byte regFrameCounter;
         Byte frameCount = 0;
@@ -77,6 +77,8 @@ namespace nes::apu {
         uint32_t audioIndex = 0;
         vector<Filter *> filters;
         uint32_t nextClock = clockRate / sampleRate;
+        int numChannels = 0;
+        ApuChannel *channels[5];
     };
     
 }

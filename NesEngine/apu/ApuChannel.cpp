@@ -61,11 +61,7 @@ uint8_t dutyTable[4][8] = {
 
 Byte PulseChannel::output() {
     bool active = DUTY_CYCLE_TABLE[duty][sequencerIndex];
-    
-    if (!silenced) {
-       //printf("NOT SILENCED\r\n");
-    }
-    
+
     if (silenced || !active || !lengthCounter || timer < 8 || timerPeriod > 0x7FFF) {
         return 0;
     }

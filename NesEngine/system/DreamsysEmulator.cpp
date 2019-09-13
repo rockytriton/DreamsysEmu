@@ -118,7 +118,9 @@ void DreamsysEmulator::run() {
                 //printf("Skipping frame\n");
                 droppedFrames++;
             } else {
+#ifdef USE_PORT_AUDIO
                 updateAudio();
+#endif
             }
             frameCount++;
             

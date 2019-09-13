@@ -19,8 +19,14 @@ extern const int BUTTON_D ;
 extern const int BUTTON_L ;
 extern const int BUTTON_R ;
 
+#include "common.h"
+
 #ifdef __cplusplus
 extern "C" {
+#else
+    
+    struct PixelData **emu_buffer();
+    
 #endif
     
     int loadCartridge(const char *fileName);
@@ -44,6 +50,7 @@ extern "C" {
     void emu_init();
     
     void updateAudio();
+
     
 #ifdef __cplusplus
 }
