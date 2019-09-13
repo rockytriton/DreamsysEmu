@@ -18,6 +18,7 @@ extern nes::system::DreamsysEmulator emulator;
 using namespace nes::cpu;
 
 std::set<const string> fetchCodes;
+bool fetchCodeLookup[0x100];
 
 void initFetchCodes() {
     fetchCodes.clear();
@@ -39,6 +40,14 @@ void initFetchCodes() {
     fetchCodes.insert("ORA");
     fetchCodes.insert("ROL");
     fetchCodes.insert("ROR");
+    
+    for (int i=0; i<0x100; i++) {
+        if (fetchCodes.find(opCodeLookup[i].name) != fetchCodes.end()) {
+            fetchCodeLookup[i] = true;
+        } else {
+            fetchCodeLookup[i] = false;
+        }
+    }
 }
 
 Cpu::Cpu() {
@@ -92,7 +101,7 @@ bool Cpu::getStatusFlag(StatusFlag flag) {
 
 bool Cpu::interrupt(InterruptType type) {
     
-    if (getStatusFlag(DisableInterrupt) && type != NMI) {
+    if (getStatusFlag(DisableInterrupt) && (type != NMI && type != BRK)) {
         //LOG << "SKIPPING INT DISABLED" << endl;
         
         if (createDisableInterrupt) {
@@ -118,6 +127,7 @@ bool Cpu::interrupt(InterruptType type) {
     
     if (type == BRK) {
         sr |= Break;
+        setStatusFlag(Break, true);
     }
     
     processor().stackPush(sr);
@@ -132,7 +142,7 @@ bool Cpu::interrupt(InterruptType type) {
         
     }
     
-    cpuData.pc = bus().readWord(cpuData.absoluteAddr);
+    cpuData.pc = cpuBus.readWord(cpuData.absoluteAddr);
     
     //LOG << "SET PC ADDR: " << hex16 << cpuData.pc << endl;
 
@@ -142,12 +152,12 @@ bool Cpu::interrupt(InterruptType type) {
 }
 
 void Cpu::fetchData(OpCode &opCode) {
-    if (fetchCodes.find(opCode.name) == fetchCodes.end()) {
+    if (!fetchCodeLookup[opCode.code]) {
         return;
     }
     
     if (opCode.addressMode != IMP && opCode.addressMode != ACC) {
-        cpuData.fetched = bus().read(cpuData.absoluteAddr);
+        cpuData.fetched = cpuBus.read(cpuData.absoluteAddr);
     }
 }
 
@@ -161,7 +171,7 @@ void Cpu::clockTick() {
     
     Address prev = cpuData.pc;
     
-    Byte code = bus().read(cpuData.pc);
+    Byte code = cpuBus.read(cpuData.pc);
     OpCode opCode = opCodeLookup[code];
     opCodeLookup[code].code = code;
     cpuData.pc++;
@@ -171,21 +181,17 @@ void Cpu::clockTick() {
     Byte amc = memoryAddressor.fetch(*this, opCode);
     cpuData.fetched = cpuData.regA;
     
-    if (clockCount == 0x02e654) {
-        //printf("OK HIT IT\r\n");
-    }
-    
-    if (opCode.name == "CLI") {
-        startLogging = 1;
-    }
+    //if (opCode.name == "CLI") {
+    //    startLogging = 1;
+    //}
     
     fetchData(opCode);
     
-    if (LOG_ENABLED && startLogging) {
+    if (LOG_ENABLED && startLogging && 0) {
         LOG << hex64 << clockCount << " " << hex16 << prev << " " << opCode.name << " (" << hex8 << opCode.code << ") "
             << hex16 << cpuData.absoluteAddr << " " << hex8 << cpuData.fetched
         << " A: " << hex8 << cpuData.regA << " X: " << hex8 << cpuData.regX << " Y: " << hex8 << cpuData.regY
-        << "CYC: " << std::dec << (int)emulator.getPpuData()->cycle << " P: " << hex8 << (int)emulator.getPpuData()->regStatus
+        << " CYC: " << std::dec << (int)emulator.getPpuData()->cycle << " P: " << hex8 << (int)emulator.getPpuData()->regStatus
             << endl;
     }
     

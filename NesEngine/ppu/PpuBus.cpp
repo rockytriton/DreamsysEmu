@@ -25,10 +25,10 @@ void PpuBus::reset() {
 
 Byte PpuBus::read(Address addr) {
     a12Status = ((addr >> 12) & 1);
-    Byte b = mapper->readCHR(addr);
+    //Byte b = mapper->readCHR(addr);
     
     if (addr < 0x2000) {
-        return b;
+        return mapper->readCHR(addr);
     } if (addr < 0x3EFF) {
         uint16_t index = addr & 0x3FF;
         
@@ -54,9 +54,10 @@ Byte PpuBus::read(Address addr) {
 
 void PpuBus::write(Address addr, Byte value) {
     a12Status = ((addr >> 12) & 1);
-    mapper->writeCHR(addr, value);
+    //mapper->writeCHR(addr, value);
     
     if (addr < 0x2000) {
+        mapper->writeCHR(addr, value);
         return;
     } else if (addr < 0x3EFF) {
         uint16_t index = addr & 0x3FF;

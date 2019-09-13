@@ -35,6 +35,7 @@ void Mapper::init() {
     int numChrBanks = cart.getHeader().chrSize * (0x2000 / getChrBankSize());
     
     mirrorType = (MirroringType)(cart.getHeader().mainFlags.flags6 & 1);
+    //mirrorType = Vertical;
     
     printf("MT: %d\r\n", mirrorType);
     
@@ -56,9 +57,10 @@ void Mapper::init() {
     if (!numChrBanks) {
         chrRam = new Byte[0x2000];
         
-        for (int i=0; i<0x2000 / 0x400; i++) {
-            chrBanks.push_back(chrRam + (0x400 * i));
+        for (int i=0; i<0x2000 / getChrBankSize(); i++) {
+            chrBanks.push_back(chrRam + (getChrBankSize() * i));
             Byte *p = chrBanks[i];
+            memset(p, 0, getChrBankSize());
             
             LOG << "CHR RAM Banks: " << i << " at " << hex64 << (uint64_t)p << endl;
         }

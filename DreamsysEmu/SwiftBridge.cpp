@@ -12,6 +12,8 @@
 #include "DreamsysEmulator.hpp"
 #include "Controller.hpp"
 
+#include "PortAudio/portaudio.h"
+
 #include <unistd.h>
 
 const int BUTTON_A = (1 << 0);
@@ -23,6 +25,9 @@ const int BUTTON_D = (1 << 5);
 const int BUTTON_L = (1 << 6);
 const int BUTTON_R = (1 << 7);
 
+PaStream *audioStream;
+PaError audioError;
+
 using namespace nes::system;
 
 DreamsysEmulator emulator;
@@ -33,8 +38,49 @@ int loadCartridge(const char *fileName) {
     return emulator.loadRom(fileName) ? 1 : 0;
 }
 
+Byte emu_read_address(Address addr) {
+    return emulator.read(addr);
+}
+
+void updateAudio() {
+    uint16_t n = 0;
+    
+    float *f = emu_read_samples(&n);
+    Pa_WriteStream(audioStream, f, n);
+    emulator.resetBuffer();
+    //nes->audioBufferLength = 0;
+}
+
+
+void emu_init() {
+    
+    audioError = Pa_Initialize();
+    if (audioError != paNoError) {
+        printf("Error initalizing Audio\n");
+        exit(0);
+    }
+    
+    PaStreamParameters output;
+    output.device = Pa_GetDefaultOutputDevice();
+    output.channelCount = 1;
+    output.sampleFormat = paFloat32;
+    output.suggestedLatency = Pa_GetDeviceInfo(output.device)->defaultHighOutputLatency;
+    output.hostApiSpecificStreamInfo = NULL;
+    
+    Pa_OpenStream(&audioStream,
+                  NULL,
+                  &output,
+                  44100,
+                  735,
+                  paClipOff,
+                  NULL,
+                  NULL);
+}
+
 void emu_run() {
+    Pa_StartStream(audioStream);
     emulator.run();
+    Pa_StopStream(audioStream);
 }
 
 int emu_running() {

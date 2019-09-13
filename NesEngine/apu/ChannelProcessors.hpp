@@ -35,8 +35,13 @@ namespace nes::apu {
         void reload(Byte value);
         void tick();
         void doReset() { reset = true; }
-        Byte getOutput() { return enabled ? val : period; }
+        Byte getOutput() { return !constVolume ? val : period; }
+        void setVolume(Byte vol, bool cons) {
+            constVolume = cons;
+            period = vol;
+        }
     private:
+        bool constVolume = false;
         bool enabled = false;
         bool reset = false;
         Byte period = 0;

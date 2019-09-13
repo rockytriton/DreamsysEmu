@@ -48,9 +48,10 @@ int Sweep::tick() {
 }
 
 void Envelope::reload(Byte value) {
-    loop = value & 0x20;
+    loop = (value >> 5) & 1;
     enabled = value & 0x10;
-    period = value & 0x0F;
+    //period = value & 0x0F;
+    setVolume(value & 0x0F, (value >> 0x4) & 1);
     reset = true;
 }
 

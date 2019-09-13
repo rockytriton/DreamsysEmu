@@ -61,6 +61,9 @@ namespace nes::mapper {
         
         virtual void updateA12(bool status) {}
         
+        virtual void saveBattery() {}
+        virtual void loadBattery() {}
+        
     protected:
         Mapper(Cartridge &cart);
         virtual ~Mapper();

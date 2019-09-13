@@ -24,6 +24,7 @@ namespace nes::system {
     public:
         bool loadRom(const string &fileName);
         void run();
+        void run2();
         
         bool isRunning() { return running; }
         
@@ -41,6 +42,10 @@ namespace nes::system {
         void readAudioBuffer(float **p, Word *n);
         float *readSamples(Word *n);
         
+        Byte read(Address addr) {
+            return cpu.bus().read(addr);
+        }
+        void resetBuffer();
     private:
         Cartridge cart;
         Cpu cpu;

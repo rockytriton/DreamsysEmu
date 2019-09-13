@@ -21,6 +21,7 @@ Byte CpuBus::read(Address address) {
         return ram[address & 0x7FF];
     } else if ((address >= 0x4000 && address <= 0x4013) || address == 0x4015) {
         //APU stuff
+        //return newApu.getAPURegister(address);
         return apu.read(address);
     }
     else if (address == 0x4014) {
@@ -60,6 +61,7 @@ void CpuBus::write(Address address, Byte value) {
         ram[address & 0x7FF] = value;
     }
     else if ((address >= 0x4000 && address <= 0x4013) || address == 0x4015 || address == 0x4017) {
+        //newApu.setAPURegister(address, value);
         apu.write(address, value);
     }
     else if (address == OAMDMA) {
@@ -72,6 +74,7 @@ void CpuBus::write(Address address, Byte value) {
         //JOY1
         nes::system::Controller::controller1().write(value);
     } else if (address == JOY2) {
+        //newApu.setAPURegister(address, value);
         apu.write(address, value);
     } else if (address >= 0x4020) {
         return mapper->writePRG(address, value);
@@ -129,4 +132,7 @@ void CpuBus::writeWord(Address addr, Word b) {
 void CpuBus::reset() {
     memset(prgRam, 0, 64 * 1024);
     memset(ram, 0, 0x800);
+    
+    //newApu.setAPURegister(0x4017, 0x0);
+    //for (int i = 0; i < 9; i++) newApu.step();
 }

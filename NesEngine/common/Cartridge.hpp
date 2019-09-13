@@ -54,6 +54,9 @@ namespace nes::common {
         
         Byte *getChrData() { return chrData; }
         Byte *getPrgData() { return prgData; }
+        
+        const string &getFileName() { return fileName; }
+        
     private:
         
         NesHeader header;

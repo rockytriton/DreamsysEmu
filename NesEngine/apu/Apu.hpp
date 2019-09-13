@@ -59,6 +59,8 @@ namespace nes::apu {
         bool isEnabled() { return enabled; }
         void readAudio(float *&samples, Word &len);
         float *readSamples(Word &len);
+        float *readSamples2(Word &len);
+        void resetBuffer();
         
     protected:
         vector<ApuChannel *> channels;
@@ -69,11 +71,12 @@ namespace nes::apu {
         bool enabled;
         uint32_t cycles = 0;
         uint32_t clockRate = 1789773;
-        uint32_t sampleRate = 96000;
+        uint32_t sampleRate = 44100;
         Mixer mixer;
         float audioBuffer[4096] = {0};
         uint32_t audioIndex = 0;
         vector<Filter *> filters;
+        uint32_t nextClock = clockRate / sampleRate;
     };
     
 }

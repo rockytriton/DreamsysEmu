@@ -59,5 +59,5 @@ void MapperNRom::writePRG(Address addr, Byte value) {
 }
 
 void MapperNRom::writeCHR(Address addr, Byte value) {
-    
+    chrBanks[0][addr] = value;
 }

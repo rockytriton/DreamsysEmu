@@ -76,6 +76,12 @@ class EmuView: NSView {
             return;
         }
         
+        if (lastFrame != -1) {
+        //return;
+        }
+        
+        //updateAudio();
+        
         lastFrame = emu_current_frame();
         
         var pb = emu_image_buffer();

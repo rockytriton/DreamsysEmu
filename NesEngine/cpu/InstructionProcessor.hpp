@@ -56,6 +56,7 @@ namespace nes::cpu {
         
         Cpu *cpu;
         std::map<const std::string, handle_inst> handlerMap;
+        handle_inst handlers[0x100];
     };
 }
 

@@ -31,6 +31,9 @@ namespace nes::mapper {
         
         virtual void init();
         
+        virtual void saveBattery();
+        virtual void loadBattery();
+        
     private:
         bool shiftWrite(Address addr, Byte value);
         void switchCharBanks();
@@ -46,6 +49,10 @@ namespace nes::mapper {
         Byte *prgRam;
         Byte *mmc1ChrBanks[2];
         Byte *mmc1PrgBanks[2];
+        bool prgRamDisabled = false;
+        
+        bool checkBatterySave = false;
+        hrClock::time_point lastSaveTime = std::chrono::high_resolution_clock::now();
     };
 }
 

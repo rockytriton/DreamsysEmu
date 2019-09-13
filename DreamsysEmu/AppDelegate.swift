@@ -12,7 +12,7 @@ import AudioKit;
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    
+    /*
     let sampler = AKSampler()
     var audioQueueRead = AudioQueueRead()
     var buffers:[AudioQueueBufferRef?] = []
@@ -22,8 +22,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return bufferLengthInFrames * frameSizeInBytes
     }
     var queue:AudioQueueRef? = nil
-    var audioDispatchQueue = DispatchQueue(label: "nesAudioQueue")
-    
+    var audioDispatchQueue = DispatchQueue(label: "nesAudioQueue", qos: DispatchQoS.default)
+    */
     @IBAction func onOpenFile(_ sender: Any) {
         let dialog = NSOpenPanel();
         
@@ -97,10 +97,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
  */
         //var computeArray: [Float] = Array(repeating: 0, count: 4096)
         //var p = withUnsafeMutablePointer(to: &computeArray) { p in return p }
+        
+        /*
         var len : UInt16 = 0;
         var p : UnsafeMutablePointer<Float>? = emu_read_samples(&len);
         //var len = emu_read_audio(p)
-        print("PREP BUFF: ", len);
+        //print("PREP BUFF: ", len);
+        
         
         if (len > 0) {
             let bufferLength = min(UInt32(len) * frameSizeInBytes, bufferLengthInBytes)
@@ -111,20 +114,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             buffer.pointee.mAudioDataByteSize = bufferLengthInBytes
         }
         //nes.clearAudioBuffer()
-        
+        emu_done_read();
         
         let error:OSStatus = AudioQueueEnqueueBuffer(queue, buffer, 0, nil)
         if (error != 0) {
             print ("Error enqueing audio buffer:\(error)")
         }
+ */
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         InitGamepad();
         
+        emu_init();
+        
+        /*
         var audioFormat:AudioStreamBasicDescription = AudioStreamBasicDescription()
-        audioFormat.mSampleRate = 96000 //44100
+        audioFormat.mSampleRate = SAMPLE_RATE //44100
         audioFormat.mFormatID = kAudioFormatLinearPCM
         audioFormat.mFormatFlags = kLinearPCMFormatFlagIsFloat | kLinearPCMFormatFlagIsPacked
         audioFormat.mFramesPerPacket = 1
@@ -133,15 +140,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         audioFormat.mBytesPerFrame = frameSizeInBytes
         audioFormat.mBytesPerPacket = frameSizeInBytes
         audioFormat.mReserved = 0
-        
-        
-        /*
-        if (!audioQueueRead.createQueue(audioFormat, 4096)) {
-            print("FAILED TO MAKE QUEUE");
-        } else {
-            print("MADE QUEUE")
-        }
-        */
+    
         
         
         var error:OSStatus
@@ -154,7 +153,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         
-        for _ in 0..<3 {
+        for _ in 0..<5 {
             var buffer:AudioQueueBufferRef?
             error = AudioQueueAllocateBuffer(queue!, bufferLengthInBytes, &buffer)
             if (error != 0) {
@@ -171,6 +170,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         print("STARTED Q")
+        */
+        
         
     }
 

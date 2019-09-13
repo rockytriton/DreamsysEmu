@@ -39,6 +39,12 @@ extern "C" {
     
     float *emu_read_samples(unsigned short *n);
     
+    void emu_done_read();
+    
+    void emu_init();
+    
+    void updateAudio();
+    
 #ifdef __cplusplus
 }
 #endif

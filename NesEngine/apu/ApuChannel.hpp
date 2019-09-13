@@ -56,6 +56,7 @@ namespace nes::apu {
     private:
         Sweep sweeper;
         int pChan;
+        Byte sequencerIndex = 0;
     };
     
     class TriangleChannel : public ApuChannel {

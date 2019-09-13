@@ -16,6 +16,8 @@ using namespace nes::cpu;
 
 int startLogging = 0;
 
+
+
 DEF_F(handle_SEI) {
     cpu->setStatusFlag(DisableInterrupt, true);
     return 0;
@@ -27,7 +29,7 @@ DEF_F(handle_JMP) {
 }
 
 DEF_F(handle_BRK) {
-    cpu->setInterrupt(BRK);
+    cpu->interrupt(BRK);
     return 0;
 }
 
@@ -496,6 +498,8 @@ DEF_F(handle_BVS) {
 
 
 InstructionProcessor::InstructionProcessor() {
+    
+    
     inst_add_handler("JMP", handle_JMP);
     inst_add_handler("BRK", handle_BRK);
     inst_add_handler("SEI", handle_SEI);
@@ -553,6 +557,11 @@ InstructionProcessor::InstructionProcessor() {
     inst_add_handler("NOP", handle_NOP);
     inst_add_handler("BVC", handle_BVC);
     inst_add_handler("BVS", handle_BVS);
+    
+    for (int i=0; i<=0xFF; i++) {
+        handlers[i] = inst_get_handler(opCodeLookup[i].name);
+        opCodeLookup[i].code = i;
+    }
 }
 
 InstructionProcessor::~InstructionProcessor() {
@@ -571,7 +580,7 @@ void InstructionProcessor::setNZFlags16(Word n) {
 }
 
 Byte InstructionProcessor::execute(OpCode &opCode) {
-    handle_inst f = inst_get_handler(opCode.name);
+    handle_inst f = handlers[opCode.code]; //inst_get_handler(opCode.name);
     
     if (f) {
         return f(cpu, opCode);

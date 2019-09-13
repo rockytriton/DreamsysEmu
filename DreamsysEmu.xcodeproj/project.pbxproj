@@ -37,9 +37,10 @@
 		F41C60D82328449D00710EFA /* Apu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F41C60D62328449D00710EFA /* Apu.cpp */; };
 		F41C60DB23284A1C00710EFA /* ApuChannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F41C60D923284A1C00710EFA /* ApuChannel.cpp */; };
 		F41C60DE232878D600710EFA /* ChannelProcessors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F41C60DC232878D600710EFA /* ChannelProcessors.cpp */; };
-		F41C60E323288B6900710EFA /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F41C60E223288B6900710EFA /* AudioKit.framework */; };
 		F41C60E52328909500710EFA /* AudioQueueRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41C60E42328909500710EFA /* AudioQueueRead.swift */; };
 		F41C60E82328AD8200710EFA /* Filters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F41C60E62328AD8200710EFA /* Filters.cpp */; };
+		F41C60EB2329B80800710EFA /* PortAudio in Resources */ = {isa = PBXBuildFile; fileRef = F41C60E92329B80800710EFA /* PortAudio */; };
+		F41C60ED2329B94B00710EFA /* libportaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F41C60EC2329B94B00710EFA /* libportaudio.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +116,9 @@
 		F41C60E42328909500710EFA /* AudioQueueRead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioQueueRead.swift; sourceTree = "<group>"; };
 		F41C60E62328AD8200710EFA /* Filters.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Filters.cpp; sourceTree = "<group>"; };
 		F41C60E72328AD8200710EFA /* Filters.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Filters.hpp; sourceTree = "<group>"; };
+		F41C60E92329B80800710EFA /* PortAudio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PortAudio; sourceTree = "<group>"; };
+		F41C60EA2329B80800710EFA /* wavefile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wavefile.h; sourceTree = "<group>"; };
+		F41C60EC2329B94B00710EFA /* libportaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libportaudio.a; path = DreamsysEmu/PortAudio/libportaudio.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,7 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F41C60E323288B6900710EFA /* AudioKit.framework in Frameworks */,
+				F41C60ED2329B94B00710EFA /* libportaudio.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +163,8 @@
 		F4135D0F23235E5800331F68 /* DreamsysEmu */ = {
 			isa = PBXGroup;
 			children = (
+				F41C60E92329B80800710EFA /* PortAudio */,
+				F41C60EA2329B80800710EFA /* wavefile.h */,
 				F4135D1023235E5800331F68 /* AppDelegate.swift */,
 				F4135D1223235E5800331F68 /* ViewController.swift */,
 				F4135D1423235E5800331F68 /* Document.swift */,
@@ -288,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				F41C60E223288B6900710EFA /* AudioKit.framework */,
+				F41C60EC2329B94B00710EFA /* libportaudio.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -379,6 +386,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F41C60EB2329B80800710EFA /* PortAudio in Resources */,
 				F4135D1723235E5A00331F68 /* Assets.xcassets in Resources */,
 				F4135D1A23235E5A00331F68 /* Main.storyboard in Resources */,
 			);
@@ -587,10 +595,15 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				INFOPLIST_FILE = DreamsysEmu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DreamsysEmu/PortAudio",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.dreamsyssoft.DreamsysEmu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -612,10 +625,15 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				INFOPLIST_FILE = DreamsysEmu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DreamsysEmu/PortAudio",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.dreamsyssoft.DreamsysEmu;
 				PRODUCT_NAME = "$(TARGET_NAME)";

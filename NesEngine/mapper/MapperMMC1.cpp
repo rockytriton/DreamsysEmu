@@ -8,7 +8,15 @@
 
 #include "MapperMMC1.hpp"
 
+#include "Log.hpp"
+
+#include <sys/stat.h>
+
 using namespace nes::mapper;
+
+static int selectedBank = 0;
+char szBankLocation[255] = "/Documents/rockemu/saved-states/";
+char szBatteryLocation[255] = "/Documents/rockemu/saved-battery/";
 
 MapperMMC1::MapperMMC1(Cartridge &cart) : Mapper(cart) {
     prgRam = new Byte[0x2000];
@@ -26,9 +34,84 @@ void MapperMMC1::init() {
     
     mmc1PrgBanks[0] = prgBanks[0];
     mmc1PrgBanks[1] = prgBanks[prgBanks.size() - 1];
+    
+    loadBattery();
+}
+
+sDuration saveDuration(10);
+
+void MapperMMC1::saveBattery() {
+    
+    char szFile[255];
+    sprintf(szFile, "%s/Documents/rockemu", getenv("HOME"));
+    
+    mkdir(szFile, S_IXUSR | S_IWUSR | S_IRUSR);
+    printf("LOC: %s %d\r\n", szFile, errno);
+    sprintf(szFile, "%s%s", getenv("HOME"), szBatteryLocation);
+    mkdir(szFile, S_IXUSR | S_IWUSR | S_IRUSR);
+    printf("LOC: %s %d\r\n", szFile, errno);
+    
+    
+    const char *p = strstr(cart.getFileName().c_str(), "/");
+    const char *pp = p;
+    
+    while((pp = strstr(p, "/")) != 0) {
+        p = pp + 1;
+    }
+    
+    sprintf(szFile, "%s%s%s-%d.state", getenv("HOME"), szBankLocation, p, selectedBank);
+    
+    std::ofstream out(szFile, std::ios::binary);
+    out.write((char *) prgRam, 0x2000);
+    out.close();
+}
+
+void MapperMMC1::loadBattery() {
+    
+    
+    char szFile[255];
+    sprintf(szFile, "%s/Documents/rockemu", getenv("HOME"));
+    
+    mkdir(szFile, S_IXUSR | S_IWUSR | S_IRUSR);
+    printf("LOC: %s %d\r\n", szFile, errno);
+    sprintf(szFile, "%s%s", getenv("HOME"), szBatteryLocation);
+    mkdir(szFile, S_IXUSR | S_IWUSR | S_IRUSR);
+    printf("LOC: %s %d\r\n", szFile, errno);
+    
+    
+    const char *p = strstr(cart.getFileName().c_str(), "/");
+    const char *pp = p;
+    
+    while((pp = strstr(p, "/")) != 0) {
+        p = pp + 1;
+    }
+    
+    sprintf(szFile, "%s%s%s-%d.state", getenv("HOME"), szBankLocation, p, selectedBank);
+    
+    std::ifstream in(szFile, std::ios::binary);
+    
+    if (!in) {
+        return;
+    }
+    
+    in.read((char *) prgRam, 0x2000);
+    in.close();
 }
 
 Byte MapperMMC1::readPRG(Address addr) {
+    if (checkBatterySave) {
+        hrClock::time_point now = std::chrono::high_resolution_clock::now();
+        
+        if ((now - lastSaveTime) > saveDuration) {
+            printf("SHOULD SAVE\r\n");
+            lastSaveTime = now;
+            checkBatterySave = false;
+            saveBattery();
+        } else {
+            //std::cout << "Not Yet: " << (now - lastSaveTime).count() << endl;
+        }
+    }
+    
     if (addr < 0x8000) {
         return prgRam[addr - 0x6000];
     }
@@ -111,21 +194,12 @@ void MapperMMC1::writePRG(Address addr, Byte value) {
     }
     
     if (addr < 0x8000) {
+        if (prgRamDisabled) {
+            return;
+        }
+        
         //chr ram
         prgRam[addr - 0x6000] = value;
-        
-        
-        if (value == 0) {
-            for (int i=4; i<500; i++) {
-                if (prgRam[i] == 0) {
-                    break;
-                }
-                
-                printf("%c", prgRam[i]);
-            }
-            
-            printf("\r\n");
-        }
         
         return;
     }
@@ -161,6 +235,11 @@ void MapperMMC1::writePRG(Address addr, Byte value) {
         regChrBank1 = regLoad;
         switchCharBanks();
     } else {
+        bool prev = prgRamDisabled;
+        prgRamDisabled = (value & 0x10) != 0;
+        
+        checkBatterySave = true;
+        
         regPrgBank = regLoad;
         switchPrgBanks();
     }

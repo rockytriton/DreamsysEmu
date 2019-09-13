@@ -19,7 +19,7 @@ void ApuChannel::write(Byte reg, Byte value) {
     if (reg == 0) {
         env.reload(value);
         counterEnabled = !(value & 0x20);
-        dutyCycle = (value & 0xC0) >> 6;
+        duty = value >> 6; //(value & 0xC0) >> 6;
     }
 }
 
@@ -52,9 +52,15 @@ static constexpr bool DUTY_CYCLE_TABLE [][8] = {
     { 0, 1, 1, 1, 1, 0, 0, 0 },
     { 1, 0, 0, 1, 1, 1, 1, 1 }
 };
+uint8_t dutyTable[4][8] = {
+    { 0, 1, 0, 0, 0, 0, 0, 0 },
+    { 0, 1, 1, 0, 0, 0, 0, 0 },
+    { 0, 1, 1, 1, 1, 0, 0, 0 },
+    { 1, 0, 0, 1, 1, 1, 1, 1 }
+};
 
 Byte PulseChannel::output() {
-    bool active = DUTY_CYCLE_TABLE[dutyCycle][duty];
+    bool active = DUTY_CYCLE_TABLE[duty][sequencerIndex];
     
     if (!silenced) {
        //printf("NOT SILENCED\r\n");
@@ -71,7 +77,7 @@ void PulseChannel::write(Byte reg, Byte value) {
     ApuChannel::write(reg, value);
     
     if (reg == 0) {
-        duty = (value & 0xC0) >> 6;
+        //duty = (value & 0xC0) >> 6;
     } else if (reg == 1) {
         sweeper.reload(value);
     } else if (reg == 2) {
@@ -81,7 +87,7 @@ void PulseChannel::write(Byte reg, Byte value) {
         
         lengthCounter = LEN_COUNTER_TABLE[(value & 0xF8) >> 3];
         env.doReset();
-        duty = 0;
+        sequencerIndex = 0;
     }
 }
 
@@ -104,7 +110,7 @@ void PulseChannel::tick(bool even) {
     }
     
     if (updateTimer()) {
-        duty = (duty + 1) % 8;
+        sequencerIndex = (sequencerIndex + 1) % 8;
     }
 }
 
