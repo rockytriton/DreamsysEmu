@@ -34,17 +34,18 @@ void Ppu::reset() {
     ppuData.curFrame = 261;
     
     ppuData.pictureBuffer = new uint32_t *[ScanlineVisibleDots];
-    
-    for (int i=0; i<ScanlineVisibleDots; i++) {
-        ppuData.pictureBuffer[i] = new uint32_t[VisibleScanlines];
-        memset(ppuData.pictureBuffer[i], 0, sizeof(uint32_t) * VisibleScanlines);
-    }
-    
     ppuData.pixelBuffer = new PixelData *[ScanlineVisibleDots];
+    ppuData.colorData = new Byte *[ScanlineVisibleDots];
     
     for (int i=0; i<ScanlineVisibleDots; i++) {
         ppuData.pixelBuffer[i] = new PixelData[VisibleScanlines];
         memset(ppuData.pixelBuffer[i], 0, sizeof(PixelData) * VisibleScanlines);
+        
+        ppuData.pictureBuffer[i] = new uint32_t[VisibleScanlines];
+        memset(ppuData.pictureBuffer[i], 0, sizeof(uint32_t) * VisibleScanlines);
+        
+        ppuData.colorData[i] = new Byte[VisibleScanlines];
+        memset(ppuData.colorData[i], 0, sizeof(Byte) * VisibleScanlines);
     }
     
     ppuBus.reset();
@@ -60,6 +61,34 @@ void Ppu::reset() {
     setStatusFlag(VBlank, 1);
     
     bus().updateMirroring();
+}
+
+bool Ppu::saveState(std::ofstream &stream) {
+    stream.write((char *)&ppuData, sizeof(ppuData));
+    bus().saveState(stream);
+    return true;
+}
+
+bool Ppu::loadState(std::ifstream &stream) {
+    stream.read((char *)&ppuData, sizeof(ppuData));
+    
+    ppuData.pictureBuffer = new uint32_t *[ScanlineVisibleDots];
+    ppuData.pixelBuffer = new PixelData *[ScanlineVisibleDots];
+    ppuData.colorData = new Byte *[ScanlineVisibleDots];
+    
+    for (int i=0; i<ScanlineVisibleDots; i++) {
+        ppuData.pixelBuffer[i] = new PixelData[VisibleScanlines];
+        memset(ppuData.pixelBuffer[i], 0, sizeof(PixelData) * VisibleScanlines);
+        
+        ppuData.pictureBuffer[i] = new uint32_t[VisibleScanlines];
+        memset(ppuData.pictureBuffer[i], 0, sizeof(uint32_t) * VisibleScanlines);
+        
+        ppuData.colorData[i] = new Byte[VisibleScanlines];
+        memset(ppuData.colorData[i], 0, sizeof(Byte) * VisibleScanlines);
+    }
+    bus().loadState(stream);
+    
+    return true;
 }
 
 void Ppu::clockTick() {

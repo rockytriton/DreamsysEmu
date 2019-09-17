@@ -23,6 +23,22 @@ void PpuBus::reset() {
     memset(palette, 0, 0x20);
 }
 
+bool PpuBus::saveState(std::ofstream &stream) {
+    stream.write((char *)busRam, 0x800);
+    stream.write((char *)palette, 0x20);
+    stream.write((char *)nameTables, 8);
+    
+    return true;
+}
+
+bool PpuBus::loadState(std::ifstream &stream) {
+    stream.read((char *)busRam, 0x800);
+    stream.read((char *)palette, 0x20);
+    stream.read((char *)nameTables, 8);
+    
+    return true;
+}
+
 Byte PpuBus::read(Address addr) {
     a12Status = ((addr >> 12) & 1);
     //Byte b = mapper->readCHR(addr);

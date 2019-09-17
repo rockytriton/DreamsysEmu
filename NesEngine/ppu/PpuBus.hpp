@@ -33,6 +33,9 @@ namespace nes::ppu {
         bool getA12Status() { return a12Status; }
         
         Mapper *getMapper() { return mapper; }
+        
+        bool loadState(std::ifstream &in) ;
+        bool saveState(std::ofstream &out) ;
     private:
         
         Byte *busRam = nullptr;

@@ -76,6 +76,28 @@ void Cpu::reset() {
     cpuData.pc = bus().readWord(cpuData.absoluteAddr);
 }
 
+bool Cpu::saveState(std::ofstream &stream) {
+    LOG << "Saving At: " << hex16 << cpuData.pc << endl;
+    
+    stream.write((char *)&cpuData, sizeof(cpuData));
+    stream.write((char *)&intSet, sizeof(InterruptType));
+    stream.write((char *)bus().readRam(), 0x800);
+    stream.write((char *)bus().readPrgRam(), 64 * 1024);
+    
+    return true;
+}
+
+bool Cpu::loadState(std::ifstream &stream) {
+    stream.read((char *)&cpuData, sizeof(cpuData));
+    stream.read((char *)&intSet, sizeof(InterruptType));
+    stream.read((char *)bus().readRam(), 0x800);
+    stream.read((char *)bus().readPrgRam(), 64 * 1024);
+    
+    LOG << "Loaded At: " << hex16 << cpuData.pc << endl;
+    
+    return true;
+}
+
 void Cpu::setStatusFlag(StatusFlag flag, bool value) {
     if (value) {
         cpuData.regStatus |= flag;
@@ -187,7 +209,7 @@ void Cpu::clockTick() {
     
     fetchData(opCode);
     
-    if (LOG_ENABLED && startLogging && 0) {
+    if (LOG_TRACE_ENABLED) {
         LOG << hex64 << clockCount << " " << hex16 << prev << " " << opCode.name << " (" << hex8 << opCode.code << ") "
             << hex16 << cpuData.absoluteAddr << " " << hex8 << cpuData.fetched
         << " A: " << hex8 << cpuData.regA << " X: " << hex8 << cpuData.regX << " Y: " << hex8 << cpuData.regY

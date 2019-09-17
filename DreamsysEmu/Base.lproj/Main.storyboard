@@ -342,6 +342,18 @@
                                                 <action selector="onHackRAM:" target="Voe-Tx-rLC" id="O73-DY-r8h"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Load State" keyEquivalent="" id="VIY-Ag-zcb" userLabel="Load State">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="loadState:" target="Voe-Tx-rLC" id="ScS-9C-JxL"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Save State" keyEquivalent="" id="J5U-5w-g23" userLabel="Save State">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="saveState:" target="Voe-Tx-rLC" id="in9-OU-sMy"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Font" id="Gi5-1S-RQB">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Font" systemMenu="font" id="aXa-aM-Jaq">
@@ -500,17 +512,6 @@
                                                     <menuItem title="Align Left" keyEquivalent="{" id="ZM1-6Q-yy1">
                                                         <connections>
                                                             <action selector="alignLeft:" target="Ady-hI-5gd" id="zUv-R1-uAa"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Center" keyEquivalent="|" id="VIY-Ag-zcb">
-                                                        <connections>
-                                                            <action selector="alignCenter:" target="Ady-hI-5gd" id="spX-mk-kcS"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Justify" id="J5U-5w-g23">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="alignJustified:" target="Ady-hI-5gd" id="ljL-7U-jND"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="Align Right" keyEquivalent="}" id="wb2-vD-lq4">

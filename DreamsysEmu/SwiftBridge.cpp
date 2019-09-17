@@ -42,8 +42,15 @@ Byte emu_read_address(Address addr) {
     return emulator.read(addr);
 }
 
+bool audioEnabled = true;
+
 void updateAudio() {
     uint16_t n = 0;
+    
+    if (!audioEnabled) {
+        emulator.resetBuffer();
+        return;
+    }
     
     float *f = emu_read_samples(&n);
     Pa_WriteStream(audioStream, f, n);
@@ -123,3 +130,12 @@ void emu_done_read() {
 Byte *emu_read_ram() {
     return emulator.readRam();
 }
+
+void emu_save_state() {
+    emulator.saveState();
+}
+
+void emu_load_state() {
+    emulator.loadState();
+}
+

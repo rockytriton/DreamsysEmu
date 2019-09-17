@@ -10,6 +10,15 @@ import Cocoa
 
 class CodeViewVC: NSViewController {
     
+    @IBAction func onPrevPage(_ sender: Any) {
+        codeView.onPreviousPage(self);
+        print("ON PP")
+    }
+    
+    @IBAction func onNextPage(_ sender: Any) {
+        codeView.onNextPage(self);
+    }
+    
     @IBOutlet var codeView: CodeView!
     
     override func viewDidLoad() {

@@ -64,6 +64,8 @@ namespace nes::mapper {
         virtual void saveBattery() {}
         virtual void loadBattery() {}
         
+        Byte *getPrgRam() { return prgRam; }
+        
     protected:
         Mapper(Cartridge &cart);
         virtual ~Mapper();

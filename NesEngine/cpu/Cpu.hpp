@@ -60,8 +60,9 @@ namespace nes::cpu {
         
         void clockTick();
         
-        void pause();
-        void resume();
+        bool isPaused() { return paused; }
+        void pause() { paused = true; }
+        void resume() { paused = false; }
         void step();
         void reset();
         
@@ -81,6 +82,7 @@ namespace nes::cpu {
         }
         
         void setInterrupt(InterruptType type) { intSet = type; }
+        void clearIrq() { intSet = NONE; }
         
         void skipDmaCycle() {
             Word ss = 513;
@@ -94,6 +96,10 @@ namespace nes::cpu {
         void clearDI() {
             createDisableInterrupt = true;
         }
+        
+        bool loadState(std::ifstream &in) ;
+        bool saveState(std::ofstream &out) ;
+        
     private:
         
         void fetchData(OpCode &opCode);

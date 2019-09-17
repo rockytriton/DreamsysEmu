@@ -63,6 +63,8 @@ namespace nes::cpu {
         
         Byte *readRam() { return ram; }
         
+        Byte *readPrgRam() { return prgRam; }
+        
     private:
         Byte prgRam[64 * 1024];
         Byte ram[0x800];

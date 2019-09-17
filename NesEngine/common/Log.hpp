@@ -74,6 +74,7 @@ namespace nes {
     
     #define LOG Log::inst().stream()
     #define LOG_ENABLED Log::inst().enabled()
+    #define LOG_TRACE_ENABLED 0
     
 }
 

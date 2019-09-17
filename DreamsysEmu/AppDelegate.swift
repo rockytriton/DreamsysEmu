@@ -123,6 +123,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
  
     }
     
+    @IBAction func loadState(_ sender: Any) {
+        emu_load_state();
+    }
+    
+    @IBAction func saveState(_ sender: Any) {
+        emu_save_state();
+    }
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         InitGamepad();

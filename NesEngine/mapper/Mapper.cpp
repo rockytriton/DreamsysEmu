@@ -68,6 +68,8 @@ void Mapper::init() {
     } else {
         chrRam = nullptr;
     }
+    
+    cart.loadBattery();
 }
 
 Mapper *MapperFactory::CreateMapper(Cartridge &cart) {
@@ -87,8 +89,6 @@ Mapper *MapperFactory::CreateMapper(Cartridge &cart) {
         default:
             return nullptr;
     }
-    
-    mapper->init();
     
     return mapper;
 }

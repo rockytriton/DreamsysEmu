@@ -187,7 +187,18 @@ void PipelineProcessor::renderVisibleDots() {
     Byte color = ppu->bus().readPalette(paletteAddr);
     
     ppuData.pictureBuffer[x][y] = colors[color];
-    ppuData.pixelBuffer[x][y] = pixels[color];
+    ppuData.colorData[x][y] = color;
+    
+}
+
+void PipelineProcessor::copyRenderData() {
+    PpuData &ppuData = ppu->data();
+    
+    for (int y=0; y<240; y++) {
+        for (int x=0; x<256; x++) {
+            ppuData.pixelBuffer[x][y] = pixels[ppuData.colorData[x][y]];
+        }
+    }
     
 }
 
@@ -286,6 +297,7 @@ void PipelineProcessor::vBlank() {
     }
     
     if (ppuData.scanLine >= FrameEndScanline) {
+        copyRenderData();
         ppuData.pipelineState = PPU_STATE_PRE;
         ppuData.scanLine = 0;
         ppuData.evenFrame = !ppuData.evenFrame;

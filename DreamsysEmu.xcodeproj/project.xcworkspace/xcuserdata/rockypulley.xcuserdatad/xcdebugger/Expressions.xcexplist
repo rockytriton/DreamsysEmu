@@ -20,6 +20,12 @@
          contextName = "nes::mapper::MapperMMC3::onSelectChr():MapperMMC3.cpp">
          <PersistentStrings>
             <PersistentString
+               value = "(bankValues[1] &amp; 0xFE) ">
+            </PersistentString>
+            <PersistentString
+               value = "c0">
+            </PersistentString>
+            <PersistentString
                value = "chrBankSize">
             </PersistentString>
          </PersistentStrings>
@@ -70,6 +76,9 @@
                value = "cart.getMapper()">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "nes::cpu::InstructionProcessor::execute(nes::cpu::OpCode&amp;):InstructionProcessor.cpp">
       </ContextState>
       <ContextState
          contextName = "nes::cpu::Cpu::clockTick():Cpu.cpp">

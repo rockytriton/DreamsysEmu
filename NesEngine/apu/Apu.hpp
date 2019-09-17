@@ -79,6 +79,9 @@ namespace nes::apu {
         uint32_t nextClock = clockRate / sampleRate;
         int numChannels = 0;
         ApuChannel *channels[5];
+        bool countFrame = false;
+        bool frameIrq = false;
+        bool intInhibit = false;
     };
     
 }

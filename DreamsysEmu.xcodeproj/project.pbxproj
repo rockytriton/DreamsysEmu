@@ -46,6 +46,8 @@
 		F41C617B232C3B8600710EFA /* CodeViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41C6177232C3B8600710EFA /* CodeViewVC.xib */; };
 		F41C617C232C3B8600710EFA /* CodeViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41C6178232C3B8600710EFA /* CodeViewVC.swift */; };
 		F41C617E232C432300710EFA /* CodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41C617D232C432300710EFA /* CodeView.swift */; };
+		F41C6182232E881300710EFA /* MemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41C6181232E881300710EFA /* MemView.swift */; };
+		F41C6185232E908500710EFA /* StateManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F41C6183232E908500710EFA /* StateManager.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +131,9 @@
 		F41C6177232C3B8600710EFA /* CodeViewVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CodeViewVC.xib; sourceTree = "<group>"; };
 		F41C6178232C3B8600710EFA /* CodeViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeViewVC.swift; sourceTree = "<group>"; };
 		F41C617D232C432300710EFA /* CodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeView.swift; sourceTree = "<group>"; };
+		F41C6181232E881300710EFA /* MemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemView.swift; sourceTree = "<group>"; };
+		F41C6183232E908500710EFA /* StateManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = StateManager.cpp; sourceTree = "<group>"; };
+		F41C6184232E908500710EFA /* StateManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StateManager.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +198,7 @@
 				F41C6176232C3B8600710EFA /* CodeViewWC.swift */,
 				F41C6175232C3B8500710EFA /* CodeViewWC.xib */,
 				F41C617D232C432300710EFA /* CodeView.swift */,
+				F41C6181232E881300710EFA /* MemView.swift */,
 			);
 			path = DreamsysEmu;
 			sourceTree = "<group>";
@@ -229,6 +235,8 @@
 				F4135D5D2324587C00331F68 /* Timer.hpp */,
 				F4135D622324810B00331F68 /* Controller.cpp */,
 				F4135D632324810B00331F68 /* Controller.hpp */,
+				F41C6183232E908500710EFA /* StateManager.cpp */,
+				F41C6184232E908500710EFA /* StateManager.hpp */,
 			);
 			path = system;
 			sourceTree = "<group>";
@@ -440,8 +448,10 @@
 				F41C60DE232878D600710EFA /* ChannelProcessors.cpp in Sources */,
 				F4135D702327522F00331F68 /* Input.swift in Sources */,
 				F4135D4C232380F100331F68 /* Mapper.cpp in Sources */,
+				F41C6185232E908500710EFA /* StateManager.cpp in Sources */,
 				F4135D692324C9A400331F68 /* EmuVC.swift in Sources */,
 				F4135D3F2323709600331F68 /* InstructionProcessor.cpp in Sources */,
+				F41C6182232E881300710EFA /* MemView.swift in Sources */,
 				F41C60D82328449D00710EFA /* Apu.cpp in Sources */,
 				F4135D5B2324567300331F68 /* Ppu.cpp in Sources */,
 				F4135D4823237D1D00331F68 /* SwiftBridge.cpp in Sources */,

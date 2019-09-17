@@ -50,6 +50,9 @@ extern "C" {
     void emu_init();
     
     void updateAudio();
+    
+    void emu_save_state();
+    void emu_load_state();
 
     Byte *emu_read_ram();
     

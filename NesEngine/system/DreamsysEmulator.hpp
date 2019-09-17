@@ -13,6 +13,7 @@
 #include "Cpu.hpp"
 #include "Cartridge.hpp"
 #include "Ppu.hpp"
+#include "StateManager.hpp"
 
 using namespace nes::common;
 using namespace nes::cpu;
@@ -22,6 +23,7 @@ namespace nes::system {
     
     class DreamsysEmulator {
     public:
+        DreamsysEmulator() : cart(stateManager), stateManager(cart) { stateManager.setCpu(&cpu); stateManager.setPpu(&ppu); }
         bool loadRom(const string &fileName);
         void run();
         void run2();
@@ -51,10 +53,16 @@ namespace nes::system {
             return cpu.bus().readRam();
         }
         
+        void saveState() { stateManager.saveState(); }
+        void loadState() { stateManager.loadState(); }
+        
+        
+        
     private:
         Cartridge cart;
         Cpu cpu;
         Ppu ppu;
+        StateManager stateManager;
         
         bool paused;
         bool stepping;

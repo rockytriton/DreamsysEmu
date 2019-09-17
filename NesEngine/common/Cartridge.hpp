@@ -15,6 +15,10 @@ namespace nes::mapper {
     class Mapper;
 }
 
+namespace nes::system {
+    class StateManager;
+}
+
 namespace nes::common {
     
     struct NesHeader {
@@ -43,7 +47,7 @@ namespace nes::common {
     
     class Cartridge {
     public:
-        Cartridge() {};
+        Cartridge(system::StateManager &stateManager) : stateManager(stateManager) {};
         ~Cartridge() {};
         
         bool load(const string &fileName);
@@ -57,7 +61,11 @@ namespace nes::common {
         
         const string &getFileName() { return fileName; }
         
+        void loadBattery();
+        void saveBattery();
+        
     private:
+        system::StateManager &stateManager;
         
         NesHeader header;
         string fileName;

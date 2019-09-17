@@ -31,7 +31,7 @@ namespace nes::ppu {
         
     private:
         void renderVisibleDots();
-        
+        void copyRenderData();
         Ppu *ppu;
         nes::cpu::Cpu *cpu;
     };

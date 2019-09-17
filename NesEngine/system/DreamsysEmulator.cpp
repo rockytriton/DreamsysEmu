@@ -82,7 +82,7 @@ void DreamsysEmulator::run() {
         //printf("RT: %f, DIFF1: %f, DIFF2: %f\r\n", realTime.count() * 1000.0, diff1, (realTime.count() * 1000.0) - gameTime);
         
         
-        if (!paused) {
+        if (!cpu.isPaused()) {
             if (sleepFrame == true && timeSync == true) {
                 long sleepTime =(long)(targetFrameLength - diff1) / 2;
                 std::this_thread::sleep_for(std::chrono::milliseconds(6));
@@ -94,7 +94,7 @@ void DreamsysEmulator::run() {
             
             auto frameStart = std::chrono::high_resolution_clock::now();
             int currentFrame = getPpuData()->curFrame;
-            while(getPpuData()->curFrame == currentFrame) {
+            while(getPpuData()->curFrame == currentFrame && !cpu.isPaused()) {
                 ppu.clockTick();
                 ppu.clockTick();
                 ppu.clockTick();

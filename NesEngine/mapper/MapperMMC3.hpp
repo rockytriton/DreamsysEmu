@@ -35,6 +35,7 @@ namespace nes::mapper {
     private:
         void onSelectChr();
         void onSelectPrg();
+        void onScanlineCount(Address address);
         
         Byte bankValues[8];
         
@@ -42,7 +43,6 @@ namespace nes::mapper {
         
         Byte regBankSelect = 0;
         Byte regBankData = 0;
-        Byte regMirroring = 0;
         Byte regRamProtect = 0x80;
         Byte regIrqLatch = 0;
         Byte regIrqReload = 0;
@@ -58,6 +58,7 @@ namespace nes::mapper {
         int irqPresetVbl = 0;
         int irqPreset = 0;
         bool lastA12 = false;
+        bool reloadIrq = false;
         
         Word scanLineCounter = 0;
     };

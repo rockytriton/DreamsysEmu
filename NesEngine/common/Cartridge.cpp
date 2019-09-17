@@ -9,11 +9,20 @@
 #include "Cartridge.hpp"
 #include "Log.hpp"
 #include "Mapper.hpp"
+#include "StateManager.hpp"
 
 #include <fstream>
 
 using namespace nes::common;
 using namespace nes::mapper;
+
+void Cartridge::loadBattery() {
+    stateManager.loadBattery();
+}
+
+void Cartridge::saveBattery() {
+    stateManager.saveBattery();
+}
 
 bool Cartridge::load(const string &fileName) {
     this->fileName = fileName;
@@ -55,6 +64,7 @@ bool Cartridge::load(const string &fileName) {
     }
     
     mapper = MapperFactory::CreateMapper(*this);
+    mapper->init();
     
     if (mapper == nullptr) {
         LOG << "Invalid Mapper: " << header.mainFlags.Bit.mt << endl;

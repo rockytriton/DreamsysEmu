@@ -68,6 +68,9 @@ Byte Apu::read(Address address) {
             value |= FrameInterrupt;
         }
         
+        frameIrq = false;
+        cpu->clearIrq();
+        
         return value;
         
     } else if (BETWEEN(address, 0x4000, 0x4013)) {
@@ -103,6 +106,7 @@ void Apu::write(Address address, Byte value) {
         }
         
         regStatus = value;
+        cpu->clearIrq();
         
     } else if (BETWEEN(address, 0x4000, 0x4013)) {
         //pulse channels
@@ -118,16 +122,27 @@ void Apu::write(Address address, Byte value) {
 
 void Apu::handleFrameCounter(Byte value) {
     regFrameCounter = value;
+    countFrame = true;
 }
 
 bool r = false;
 
 void Apu::clockTick() {
     cycles++;
+    bool even = (cycles % 2) == 0;
     
+    if (countFrame && even) {
+        countFrame = false;
+        intInhibit = ((regFrameCounter & 0x40) != 0);
+        
+        if (intInhibit) {
+            frameIrq = false;
+            cpu->clearIrq();
+        }
+    }
     
     for (int i=0; i<numChannels; i++) {
-        channels[i]->tick((cycles % 2) == 0);
+        channels[i]->tick(even);
     }
 
     if (cycles % (clockRate / 240) == 0) {
@@ -170,6 +185,10 @@ void Apu::clockTick() {
         frameCount++;
     }
     
+    if (frameIrq) {
+        cpu->setInterrupt(cpu::IRQ);
+    }
+    
     if (cycles == nextClock) {
         r = !r;
         nextClock += (clockRate / sampleRate) + r;
@@ -184,31 +203,7 @@ void Apu::clockTick() {
             
             audioIndex++;
         }
-        
     }
-    /*
-    if (cycles % ((clockRate / sampleRate)) == 0) {
-        //printf("OUT\r\n");
-        //r = !r;
-        float sample = mixer.sample(channels[0]->output(), channels[1]->output(), 0, 0, 0);
-        //float sample = mixer.sample(channels[0]->output(), channels[1]->output(), channels[2]->output(), channels[3]->output(), 0);
-        //float sample = mixer.sample(0, 0, channels[2]->output(), channels[3]->output(), 0);
-        //float sample = mixer.sample(0, 0, channels[2]->output(), 0, 0);
-        
-        for (int i=0; i<filters.size(); i++) {
-            //sample = filters[i]->process(sample);
-        }
-        
-        std::unique_lock<std::mutex> lck(mtx);
-        audioBuffer[audioIndex] = sample;
-        
-        if (audioIndex < 4095) {
-            audioIndex++;
-        } else {
-            printf("PACKET LOSS!\r\n");
-        }
-        cv.notify_all();
-    }*/
 }
 
 float copyBuffer[4096] = {0};

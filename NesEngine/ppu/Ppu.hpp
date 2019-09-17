@@ -81,6 +81,7 @@ namespace nes::ppu {
         uint32_t **pictureBuffer;
         uint32_t curFrame;
         PixelData **pixelBuffer;
+        Byte **colorData;
     };
     
     class Ppu {
@@ -198,6 +199,9 @@ namespace nes::ppu {
         bool displayEnabled() {
             return getMaskFlag(BGEnabled) | getMaskFlag(SpriteEnabled);
         }
+        
+        bool loadState(std::ifstream &in) ;
+        bool saveState(std::ofstream &out) ;
         
     private:
         PpuData ppuData;
