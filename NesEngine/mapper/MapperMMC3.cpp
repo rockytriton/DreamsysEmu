@@ -66,19 +66,27 @@ void MapperMMC3::onSelectPrg() {
 
 void MapperMMC3::onScanlineCount(Address address) {
     bool current = lastA12;
+    lastA12 = address >= 0x1000;
     
-    lastA12 = address & 0x1000;
+    if (scanLineCounter == 0xc1) {
+        address += 0;
+    }
+    
+    if (address == 8183) {
+        address += 0;
+    }
     
     if (!current && lastA12) {
-        if (scanLineCounter == 0 || reloadIrq) {
-            reloadIrq = false;
-            scanLineCounter = regIrqReload;
+        if (scanLineCounter == 0 || regIrqReload) {
+            regIrqReload = 0;
+            scanLineCounter = regIrqLatch;
         } else {
             scanLineCounter--;
         }
         
         if (scanLineCounter == 0 && regIrqEnable) {
             cpu->setInterrupt(cpu::IRQ);
+            printf("IRQ: %d\r\n", address);
         }
     }
 }
@@ -149,7 +157,7 @@ void MapperMMC3::writePRG(Address addr, Byte value) {
             
         case 0xC001: {
             regIrqReload = 1;
-            scanLineCounter = 0;
+            //scanLineCounter = 0;
         } break;
             
         case 0xE000: {

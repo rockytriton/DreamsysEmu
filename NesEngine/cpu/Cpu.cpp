@@ -185,6 +185,8 @@ void Cpu::fetchData(OpCode &opCode) {
 
 extern int startLogging;
 
+bool doIRQ = false;
+
 void Cpu::clockTick() {
     if (cpuData.cycles > 0) {
         cpuData.cycles--;
@@ -221,8 +223,16 @@ void Cpu::clockTick() {
     
     Byte imc = processor().execute(opCode);
     
-    if (intSet != NONE) {
+    if (doIRQ) {
+        doIRQ = false;
         if (interrupt(intSet)) {
+            
+        }
+    }
+    
+    if (intSet != NONE) {
+        if (!getStatusFlag(DisableInterrupt)) {
+            doIRQ = true;
             intSet = NONE;
         }
     }

@@ -76,6 +76,8 @@ void PipelineProcessor::preRender() {
 void PipelineProcessor::renderVisibleDots() {
     PpuData &ppuData = ppu->data();
     
+    printf("FRAME: %d, %d, %d, %d\r\n", ppuData.curFrame, ppuData.scanLine, ppu->getMaskFlag(SpriteEnabled), ppu->getMaskFlag(SpriteLeftEnabled));
+    
     Byte bgColor = 0;
     Byte sprColor = 0;
     bool bgOpaque = false;

@@ -47,7 +47,7 @@ namespace nes::mapper {
         Byte regIrqLatch = 0;
         Byte regIrqReload = 0;
         Byte regIrqDisable = 0;
-        Byte regIrqEnable = 0;
+        Byte regIrqEnable = 1;
         
         Word prgBankSize;
         Word chrBankSize;

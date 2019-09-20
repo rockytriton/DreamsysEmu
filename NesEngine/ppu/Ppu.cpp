@@ -31,7 +31,8 @@ void Ppu::reset() {
     ppuData.fineXScroll = 0;
     ppuData.scanLineSpritesSize = 0;
     memset(ppuData.spriteMemory, 0, 64 * 4);
-    ppuData.curFrame = 261;
+    ppuData.curFrame = 0;
+    ppuData.scanLine = 261;
     
     ppuData.pictureBuffer = new uint32_t *[ScanlineVisibleDots];
     ppuData.pixelBuffer = new PixelData *[ScanlineVisibleDots];
